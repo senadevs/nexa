@@ -51,3 +51,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual en preview local.
 - Depende de: X-T4
 - Devlog: devlog/2026-09-14/006-correccion-direccion-visual.md
+
+### X-T6 · Contacto, formulario y footer [M] [done]
+
+- Skill: ui-ux-pro-max §formularios y accesibilidad + code-quality §frontend
+- Archivos: src/pages/index.astro, src/pages/trabajos.astro, src/styles/global.css
+- Hecho cuando: el contacto incluye email, WhatsApp, ubicación, formulario accesible y footer con navegación consistente.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual y envío de prueba.
+- Depende de: X-T5
+- Devlog: devlog/2026-09-14/007-contacto-footer.md

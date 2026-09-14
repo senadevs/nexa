@@ -356,28 +356,106 @@ h2 {
   background: var(--lime);
 }
 .contact-inner {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 8vw;
   margin: 6vw 0 5vw;
 }
 .contact-inner h2 {
   font-size: clamp(4rem, 9.5vw, 10rem);
 }
-.contact-arrow {
-  background: var(--ink);
-  color: var(--lime);
-  width: 132px;
-  height: 132px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  font-size: 4rem;
-  transition: transform 0.2s;
+.contact-intro {
+  max-width: 430px;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  margin: 0 0 4vw;
 }
-.contact-arrow:hover {
-  transform: translate(9px, -9px);
+.contact-channels {
+  display: grid;
+  gap: 1rem;
+  max-width: 440px;
+}
+.contact-channels a,
+.contact-channels > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 0.75rem;
+  text-decoration: none;
+}
+.contact-channels small {
+  font: 400 0.68rem var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.contact-channels span span,
+.contact-channels a span {
+  font-size: 1rem;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 1rem;
+  padding: 1.7rem;
+  background: var(--paper);
+  color: var(--ink);
+}
+.form-field {
+  display: grid;
+  gap: 0.45rem;
+}
+.form-field-wide,
+.form-submit,
+.form-note {
+  grid-column: 1 / -1;
+}
+.form-field label {
+  font: 400 0.66rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  padding: 0.7rem 0;
+  outline: none;
+}
+.form-field textarea {
+  resize: vertical;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--lime);
+  box-shadow: 0 2px 0 var(--lime);
+}
+.form-submit {
+  justify-self: start;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.9rem 1.1rem;
+  font: 400 0.68rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.form-submit span {
+  color: var(--lime);
+  margin-left: 1.5rem;
+}
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
 }
 .contact-footer {
   border-top: 1px solid var(--ink);
@@ -397,9 +475,8 @@ footer {
   background: var(--ink);
   color: var(--paper);
   padding: 26px 5vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  gap: 4rem;
 }
 footer .wordmark {
   color: var(--paper);
@@ -411,6 +488,39 @@ footer .wordmark span:first-child {
 footer p {
   color: #a5a59c;
   margin: 0;
+}
+.footer-main,
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.footer-main {
+  align-items: start;
+}
+.footer-main p {
+  margin-right: auto;
+}
+.footer-mail {
+  color: var(--paper);
+  text-decoration: none;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(248, 248, 247, 0.24);
+  padding-top: 1rem;
+  color: #b2b3b5;
+  font: 400 0.68rem var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.footer-bottom nav {
+  display: flex;
+  gap: 1.4rem;
+}
+.footer-bottom a {
+  color: var(--paper);
+  text-decoration: none;
 }
 .sr-only {
   position: absolute;
@@ -496,11 +606,20 @@ footer p {
   .contact-inner {
     display: block;
   }
-  .contact-arrow {
-    width: 98px;
-    height: 98px;
-    font-size: 3rem;
-    margin: 2rem 0 0 auto;
+  .contact-form {
+    grid-template-columns: 1fr;
+    margin-top: 12vw;
+    padding: 1.2rem;
+  }
+  .form-field-wide,
+  .form-submit,
+  .form-note {
+    grid-column: auto;
+  }
+  .contact-channels a,
+  .contact-channels > span {
+    display: grid;
+    gap: 0.3rem;
   }
   .contact-footer {
     flex-wrap: wrap;
@@ -510,11 +629,20 @@ footer p {
     width: 100%;
   }
   footer {
-    flex-wrap: wrap;
-    gap: 12px;
+    gap: 2.5rem;
   }
-  footer p {
+  .footer-main,
+  .footer-bottom {
+    display: grid;
+    gap: 1.2rem;
+  }
+  .footer-main p {
     font-size: 0.56rem;
+  }
+  .footer-bottom nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
   }
 }
 

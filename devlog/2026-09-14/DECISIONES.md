@@ -11,3 +11,5 @@
 - **Spatial scroll:** los bloques narrativos usan pequeñas trayectorias laterales, diagonales y de profundidad; la escena Three.js central conserva el cambio de formas y no se fuerza el efecto en móvil.
 - **Reversión de interacción:** se elimina el spatial scroll multidireccional porque no representa la experiencia buscada; se conserva solo el 3D narrativo central, más controlado.
 - **Paleta Nexa:** se adopta la referencia del logo como fuente visual: carbón `#272727`, gris grafito `#686A6D`, coral `#F36B48`, melocotón `#FFAD98` y blanco `#F8F8F7`.
+- **Contacto sin backend inicial:** el formulario genera un `mailto:` con los datos del proyecto para permitir contacto inmediato sin introducir todavía un servicio externo o credenciales de servidor.
+- **WhatsApp provisional:** se deja el enlace aislado con un número placeholder; debe sustituirse por el número real de Nexa antes de publicar.

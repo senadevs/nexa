@@ -8,3 +8,4 @@
 | 004 | 2026-09-14 | Scroll inmersivo 3D y limpieza visual | feature | —        | X-T3         |
 | 005 | 2026-09-14 | Spatial scroll multidireccional       | feature | —        | X-T4         |
 | 006 | 2026-09-14 | Corrección de dirección visual Nexa   | fix     | 005      | X-T5         |
+| 007 | 2026-09-14 | Contacto, formulario y footer         | feature | —        | X-T6         |

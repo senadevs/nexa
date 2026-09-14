@@ -50,9 +50,9 @@ import '../styles/global.css';
       <div class="client-content"><h2 id="clients-title">Marcas que<br /><em>confían.</em></h2><div class="client-logos" aria-label="Clientes de Nexa"><span>marea</span><span class="serif">norte</span><span>ORBITA</span><span class="serif italic">estudio 44</span><span>croma<span class="lime">.</span></span><span class="serif">lumen</span></div></div>
     </section>
 
-    <section class="contact" id="contacto" aria-labelledby="contact-title"><p class="section-label">05 / Hablemos</p><div class="contact-inner"><h2 id="contact-title">¿Tienes algo<br /><em>en mente?</em></h2><a class="contact-arrow" href="mailto:hola@nexa.agency" aria-label="Escribir a Nexa">→</a></div><div class="contact-footer"><a href="mailto:hola@nexa.agency">hola@nexa.agency</a><span>Madrid / España</span><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram ↗</a></div></section>
+    <section class="contact" id="contacto" aria-labelledby="contact-title"><p class="section-label">05 / Hablemos</p><div class="contact-inner"><div><h2 id="contact-title">¿Tienes algo<br /><em>en mente?</em></h2><p class="contact-intro">Cuéntanos qué quieres mover. Te responderemos con una primera mirada, una pregunta y un siguiente paso claro.</p><div class="contact-channels"><a href="mailto:hola@nexa.agency"><small>Email</small><span>hola@nexa.agency ↗</span></a><a href="https://wa.me/34600000000?text=Hola%20Nexa%2C%20quiero%20hablar%20de%20un%20proyecto" target="_blank" rel="noreferrer"><small>WhatsApp</small><span>Escríbenos ↗</span></a><span><small>Base</small><span>Madrid / España</span></span></div></div><form class="contact-form" id="contact-form"><div class="form-field"><label for="name">Tu nombre</label><input id="name" name="name" type="text" autocomplete="name" required /></div><div class="form-field"><label for="email">Tu email</label><input id="email" name="email" type="email" autocomplete="email" required /></div><div class="form-field"><label for="company">Empresa</label><input id="company" name="company" type="text" autocomplete="organization" /></div><div class="form-field"><label for="service">Qué necesitas</label><select id="service" name="service"><option value="">Selecciona un servicio</option><option>Branding</option><option>Diseño web</option><option>Estrategia y creatividad digital</option><option>Paid media</option><option>Producción audiovisual</option><option>Otro proyecto</option></select></div><div class="form-field form-field-wide"><label for="message">Háblanos del proyecto</label><textarea id="message" name="message" rows="4" required></textarea></div><button class="form-submit" type="submit">Enviar proyecto <span>↗</span></button><p class="form-note" id="form-note">Al enviar se abrirá tu cliente de correo con el mensaje preparado.</p></form></div><div class="contact-footer"><span>Nexa Digital Agency</span><a href="mailto:hola@nexa.agency">hola@nexa.agency</a><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram ↗</a></div></section>
   </main>
-  <footer><a class="wordmark" href="#home"><span>N</span>exa<i>.</i></a><p>Marketing con intención.</p><p>© Nexa 2026</p></footer>
+  <footer><div class="footer-main"><a class="wordmark" href="#home"><span>N</span>exa<i>.</i></a><p>Marketing con intención.<br />Estrategia, identidad y movimiento.</p><a class="footer-mail" href="mailto:hola@nexa.agency">hola@nexa.agency ↗</a></div><div class="footer-bottom"><nav aria-label="Navegación del pie"><a href="#clientes">Clientes</a><a href="#servicios">Servicios</a><a href="/trabajos">Trabajo</a><a href="#contacto">Contactos</a></nav><span>Madrid / España</span><span>© Nexa 2026</span></div></footer>
 
   <script>
     import '../scripts/scroll-scene';
@@ -74,5 +74,15 @@ import '../styles/global.css';
         gsap.fromTo('.ticker div', { xPercent: 0 }, { xPercent: -18, ease: 'none', scrollTrigger: { trigger: '.ticker', start: 'top bottom', end: 'bottom top', scrub: 1 } });
       });
     }
+    document.querySelector<HTMLFormElement>('#contact-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget as HTMLFormElement;
+      const data = new FormData(form);
+      const subject = `Nuevo proyecto — ${data.get('company') || data.get('name')}`;
+      const body = [`Nombre: ${data.get('name')}`, `Email: ${data.get('email')}`, `Empresa: ${data.get('company') || 'No indicada'}`, `Servicio: ${data.get('service') || 'No indicado'}`, '', `${data.get('message')}`].join('\n');
+      window.location.href = `mailto:hola@nexa.agency?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const note = document.querySelector<HTMLElement>('#form-note');
+      if (note) note.textContent = 'Tu cliente de correo debería abrirse ahora. Gracias por escribirnos.';
+    });
   </script>
 </BaseLayout>

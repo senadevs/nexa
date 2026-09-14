@@ -11,3 +11,4 @@
 | 007 | 2026-09-14 | Contacto, formulario y footer         | feature | —        | X-T6         |
 | 008 | 2026-09-14 | Logo SVG y paleta oficial             | fix     | 006      | X-T7         |
 | 009 | 2026-09-14 | Ticker infinito de servicios          | feature | —        | X-T8         |
+| 010 | 2026-09-14 | Sección de trabajo con casos          | feature | —        | X-T9         |

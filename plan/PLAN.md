@@ -78,3 +78,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; revisión visual local.
 - Depende de: X-T7
 - Devlog: devlog/2026-09-14/009-ticker-infinito.md
+
+### X-T9 · Sección de trabajo con casos [M] [done]
+
+- Skill: ui-ux-pro-max §landing + brand §messaging + code-quality §frontend
+- Archivos: src/pages/index.astro, src/styles/global.css
+- Hecho cuando: la sección Trabajo contiene contexto, proyecto destacado, casos visuales y CTA para el siguiente proyecto.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual local.
+- Depende de: X-T8
+- Devlog: devlog/2026-09-14/010-seccion-trabajo.md

@@ -105,3 +105,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual en `/` y `/trabajos`.
 - Depende de: X-T10
 - Devlog: devlog/2026-09-14/012-visuales-portfolio.md
+
+### X-T12 · Header legible y entrada del scroll [S] [done]
+
+- Skill: ui-ux-pro-max §tipografía + gsap-scrolltrigger §scroll-story
+- Archivos: src/styles/global.css, src/scripts/scroll-scene.ts
+- Hecho cuando: la navegación tiene peso visual suficiente y el primer capítulo del scroll permanece legible al inicio.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual en `/`.
+- Depende de: X-T11
+- Devlog: devlog/2026-09-14/013-header-scroll.md

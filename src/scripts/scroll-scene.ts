@@ -95,7 +95,9 @@ class ScrollScene {
       end: "bottom bottom",
       scrub: 1,
       onUpdate: (self) => {
-        const index = Math.min(2, Math.floor(self.progress * 3));
+        // Keep the opening chapter on screen longer so the narrative starts
+        // with a clear message before the 3D object changes state.
+        const index = self.progress < 0.44 ? 0 : self.progress < 0.72 ? 1 : 2;
         this.shapes.forEach((shape, shapeIndex) => {
           shape.visible = shapeIndex === index;
         });

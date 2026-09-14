@@ -28,4 +28,4 @@
 
 ## Commit
 
-- Pendiente de crear en este cierre.
+- `a267411` — `feat: add bilingual SEO foundation`

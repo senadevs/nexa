@@ -21,5 +21,5 @@
 
 ## Commit y publicación
 
-- Commit local: `ea1c592` — `fix: make work showcase full width`
-- Publicación: pendiente de ejecutar `git push origin main`.
+- Commit local: `454b47c` — `fix: make work showcase full width`
+- Publicación: bloqueada; GitHub respondió `Repository not found` para `git@github.com:senadevs/nexa.git`.

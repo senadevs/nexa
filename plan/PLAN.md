@@ -96,3 +96,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; git push origin main.
 - Depende de: X-T9
 - Devlog: devlog/2026-09-14/011-trabajo-publicado.md
+
+### X-T11 · Visuales de portfolio y footer [M] [done]
+
+- Skill: imagegen §portfolio assets + ui-ux-pro-max §content hierarchy + brand §asset organization
+- Archivos: src/pages/index.astro, src/pages/trabajos.astro, src/styles/global.css, public/images/*-case.png
+- Hecho cuando: footer muestra el logo completo y cada caso de portfolio tiene un visual propio sin repetir imágenes de servicios.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual en `/` y `/trabajos`.
+- Depende de: X-T10
+- Devlog: devlog/2026-09-14/012-visuales-portfolio.md

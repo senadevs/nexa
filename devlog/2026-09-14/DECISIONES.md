@@ -18,3 +18,4 @@
 - **Trabajo con contexto:** la home muestra una selección editorial de casos con disciplina y resultado narrativo; `/trabajos` queda como archivo ampliado para crecer con casos reales y métricas aprobadas.
 - **Trabajo a ancho completo:** la sección no reserva una columna lateral para etiquetas ocultas; el contenido editorial usa todo el contenedor disponible.
 - **Remoto Git por HTTPS:** el remoto se configura con HTTPS porque el repositorio está disponible, pero el acceso SSH del equipo devolvía `Repository not found`.
+- **Portfolio no repetido:** los casos de trabajo usan imágenes específicas (`*-case.png`) y no reutilizan los visuales de servicios; el footer conserva el logo oficial completo.

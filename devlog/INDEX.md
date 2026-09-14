@@ -13,3 +13,4 @@
 | 009 | 2026-09-14 | Ticker infinito de servicios           | feature | —        | X-T8         |
 | 010 | 2026-09-14 | Sección de trabajo con casos           | feature | —        | X-T9         |
 | 011 | 2026-09-14 | Trabajo a ancho completo y publicación | fix     | 010      | X-T10        |
+| 012 | 2026-09-14 | Visuales de portfolio y footer         | feature | 008      | X-T11        |

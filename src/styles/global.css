@@ -1155,6 +1155,10 @@ footer p {
 .work-preview {
   background: #d0c7bb;
 }
+.work-preview .work-body,
+.work-preview .work-projects {
+  grid-column: 1 / -1;
+}
 .work-body {
   grid-column: 2;
   display: grid;

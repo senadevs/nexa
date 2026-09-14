@@ -87,3 +87,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual local.
 - Depende de: X-T8
 - Devlog: devlog/2026-09-14/010-seccion-trabajo.md
+
+### X-T10 · Trabajo a ancho completo y publicación [M] [doing]
+
+- Skill: ui-ux-pro-max §layout + code-quality §delivery
+- Archivos: src/styles/global.css
+- Hecho cuando: la sección Trabajo ocupa todo el contenedor y los commits locales están publicados en el remoto configurado.
+- Verificar: npm run check; npm run lint; npm run build; git push origin main.
+- Depende de: X-T9
+- Devlog: devlog/2026-09-14/011-trabajo-publicado.md

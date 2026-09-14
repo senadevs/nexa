@@ -16,3 +16,4 @@
 - **Logo oficial:** se usa `NEXA LOGO.svg` como asset de marca en lugar de reconstruir el wordmark con HTML; se recorta únicamente el espacio vacío del `viewBox` para conservar proporción y legibilidad.
 - **Ticker continuo:** la franja de disciplinas funciona como marquee autónomo con contenido duplicado y loop lineal; no se liga al scroll para mantener una velocidad constante.
 - **Trabajo con contexto:** la home muestra una selección editorial de casos con disciplina y resultado narrativo; `/trabajos` queda como archivo ampliado para crecer con casos reales y métricas aprobadas.
+- **Trabajo a ancho completo:** la sección no reserva una columna lateral para etiquetas ocultas; el contenido editorial usa todo el contenedor disponible.

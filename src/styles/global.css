@@ -1,9 +1,9 @@
 :root {
-  --ink: #171717;
-  --paper: #f1f0ea;
-  --lime: #d6f43e;
-  --muted: #74746d;
-  --line: rgba(23, 23, 23, 0.19);
+  --ink: #272727;
+  --paper: #f8f8f7;
+  --lime: #f36b48;
+  --muted: #686a6d;
+  --line: rgba(39, 39, 39, 0.2);
   --sans: "Manrope", sans-serif;
   --mono: "DM Mono", monospace;
 }
@@ -57,7 +57,7 @@ a:focus-visible {
   margin-right: 2px;
 }
 .wordmark i {
-  color: #94a828;
+  color: var(--lime);
   font-style: normal;
 }
 .site-header nav {
@@ -168,7 +168,7 @@ h2 {
 .video-wrap {
   height: min(68vh, 660px);
   overflow: hidden;
-  background: #20251e;
+  background: #36383b;
   border-radius: 48% 48% 0 0;
   position: relative;
 }
@@ -611,6 +611,9 @@ footer p {
     filter 0.3s ease,
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.service-detail img[src*="audiovisual"] {
+  filter: saturate(0.72) sepia(0.16) hue-rotate(318deg);
+}
 .service-detail img:hover {
   filter: saturate(1.05);
   transform: translateY(-4px);
@@ -880,10 +883,6 @@ footer p {
 .service-card summary:hover {
   background: var(--lime);
 }
-.spatial-section {
-  transform-style: preserve-3d;
-  will-change: transform;
-}
 .service-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -911,10 +910,6 @@ footer p {
   filter: saturate(0.84);
 }
 @media (max-width: 800px) {
-  .spatial-section {
-    transform: none !important;
-    will-change: auto;
-  }
   .hero-content {
     padding: 18vw 5vw 15vw;
   }
@@ -960,7 +955,7 @@ footer p {
 .scene-shell {
   height: min(68vh, 660px);
   overflow: hidden;
-  background: #20251e;
+  background: #36383b;
   border-radius: 48% 48% 0 0;
   position: relative;
 }
@@ -980,7 +975,7 @@ footer p {
   opacity: 0.28;
   background: radial-gradient(
     circle at 35% 35%,
-    rgba(214, 244, 62, 0.9),
+    rgba(243, 107, 72, 0.9),
     transparent 42%
   );
 }
@@ -1085,7 +1080,7 @@ footer p {
   color: var(--paper);
 }
 .art-pink {
-  background: #e9a4bf;
+  background: #ffad98;
 }
 .project h2 {
   font-size: 2rem;

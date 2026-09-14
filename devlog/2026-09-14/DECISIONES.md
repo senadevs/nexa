@@ -9,3 +9,5 @@
 - **Contenido como estructura:** las seis áreas de servicio son desplegables y tienen copy e imagen propios; la página de trabajos queda separada para poder crecer en SEO y casos de estudio.
 - **Calidad del repositorio:** se excluyen dependencias, artefactos de Astro y builds generadas del control de versiones mediante `.gitignore`.
 - **Spatial scroll:** los bloques narrativos usan pequeñas trayectorias laterales, diagonales y de profundidad; la escena Three.js central conserva el cambio de formas y no se fuerza el efecto en móvil.
+- **Reversión de interacción:** se elimina el spatial scroll multidireccional porque no representa la experiencia buscada; se conserva solo el 3D narrativo central, más controlado.
+- **Paleta Nexa:** se adopta la referencia del logo como fuente visual: carbón `#272727`, gris grafito `#686A6D`, coral `#F36B48`, melocotón `#FFAD98` y blanco `#F8F8F7`.

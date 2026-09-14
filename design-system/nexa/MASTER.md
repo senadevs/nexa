@@ -36,7 +36,7 @@
 | On Destructive | `#FFFFFF` | `--color-on-destructive` |
 | Ring | `#EC4899` | `--color-ring` |
 
-**Color Notes:** Bold pink + creative cyan [Accent adjusted from #06B6D4]
+**Color Notes:** Carbón, gris grafito, coral naranja y melocotón, tomados del logotipo Nexa Digital Agency.
 
 ### Typography
 

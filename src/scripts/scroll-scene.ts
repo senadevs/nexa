@@ -30,17 +30,17 @@ class ScrollScene {
     );
     this.camera.position.z = 6;
     this.scene.add(new THREE.AmbientLight(0xffffff, 1.4));
-    const key = new THREE.DirectionalLight(0xd6f43e, 4);
+    const key = new THREE.DirectionalLight(0xf36b48, 4);
     key.position.set(2, 3, 4);
     this.scene.add(key);
-    const pink = new THREE.PointLight(0xe9a4bf, 5, 8);
+    const pink = new THREE.PointLight(0xffad98, 5, 8);
     pink.position.set(-3, -2, 3);
     this.scene.add(pink);
     this.shapes = [
       new THREE.Mesh(
         new THREE.IcosahedronGeometry(1.3, 2),
         new THREE.MeshStandardMaterial({
-          color: 0xd6f43e,
+          color: 0xf36b48,
           roughness: 0.3,
           flatShading: true,
         }),
@@ -48,7 +48,7 @@ class ScrollScene {
       new THREE.Mesh(
         new THREE.TorusKnotGeometry(1.05, 0.25, 96, 14),
         new THREE.MeshStandardMaterial({
-          color: 0xe9a4bf,
+          color: 0xffad98,
           roughness: 0.22,
           metalness: 0.18,
         }),

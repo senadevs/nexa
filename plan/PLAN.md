@@ -42,3 +42,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual en preview local.
 - Depende de: 3cc1fc2
 - Devlog: devlog/2026-09-14/005-spatial-scroll.md
+
+### X-T5 · Corrección de dirección visual Nexa [M] [done]
+
+- Skill: brand §visual identity + ui-ux-pro-max §landing + imagegen §website assets
+- Archivos: src/styles/global.css, src/pages/index.astro, src/scripts/scroll-scene.ts, public/images/*-v2.png
+- Hecho cuando: se retira el spatial scroll rechazado, la interfaz usa la paleta del logo y los visuales principales se alinean con ella.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual en preview local.
+- Depende de: X-T4
+- Devlog: devlog/2026-09-14/006-correccion-direccion-visual.md

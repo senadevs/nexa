@@ -22,4 +22,4 @@
 
 ## Commit
 
-- Pendiente de crear en este cierre.
+- `65c2bff` — `feat: add unique portfolio case visuals`

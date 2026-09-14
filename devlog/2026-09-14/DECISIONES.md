@@ -14,3 +14,4 @@
 - **Contacto sin backend inicial:** el formulario genera un `mailto:` con los datos del proyecto para permitir contacto inmediato sin introducir todavía un servicio externo o credenciales de servidor.
 - **WhatsApp provisional:** se deja el enlace aislado con un número placeholder; debe sustituirse por el número real de Nexa antes de publicar.
 - **Logo oficial:** se usa `NEXA LOGO.svg` como asset de marca en lugar de reconstruir el wordmark con HTML; se recorta únicamente el espacio vacío del `viewBox` para conservar proporción y legibilidad.
+- **Ticker continuo:** la franja de disciplinas funciona como marquee autónomo con contenido duplicado y loop lineal; no se liga al scroll para mantener una velocidad constante.

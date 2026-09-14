@@ -69,3 +69,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual local.
 - Depende de: X-T6
 - Devlog: devlog/2026-09-14/008-logo-paleta-oficial.md
+
+### X-T8 · Ticker infinito de servicios [S] [done]
+
+- Skill: gsap-scrolltrigger §timelines + code-quality §frontend
+- Archivos: src/pages/index.astro, src/styles/global.css
+- Hecho cuando: la franja de servicios se desplaza continuamente en loop, sin depender del scroll y con pausa en `prefers-reduced-motion`.
+- Verificar: npm run check; npm run lint; revisión visual local.
+- Depende de: X-T7
+- Devlog: devlog/2026-09-14/009-ticker-infinito.md

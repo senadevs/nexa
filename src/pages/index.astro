@@ -19,7 +19,7 @@ import '../styles/global.css';
       <div class="hero-content reveal"><div class="hero-slide" data-slide="0"><h1 id="hero-title">Ideas que<br /><em>mueven.</em></h1><p>Construimos marcas con estrategia, creatividad y la energía necesaria para dejar huella.</p></div><div class="hero-slide" data-slide="1" hidden><h1>Marcas con<br /><em>criterio.</em></h1><p>De la primera intuición a la última pantalla: damos forma a lo que tu marca quiere decir.</p></div><div class="hero-slide" data-slide="2" hidden><h1>Hacemos que<br /><em>pase.</em></h1><p>Ideas que se sienten, se comparten y convierten atención en movimiento.</p></div><a class="hero-link" href="#servicios">Descubre cómo trabajamos <span>↓</span></a></div><div class="hero-progress" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
     </section>
 
-    <div class="ticker" aria-label="Áreas de trabajo"><div>Branding <b>✳</b> Digital <b>✳</b> Content <b>✳</b> Paid Media <b>✳</b> Branding <b>✳</b> Digital <b>✳</b></div></div>
+    <div class="ticker" aria-label="Áreas de trabajo"><div class="ticker-track"><div>Branding <b>✳</b> Digital <b>✳</b> Content <b>✳</b> Paid Media <b>✳</b> Branding <b>✳</b> Digital <b>✳</b></div><div aria-hidden="true">Branding <b>✳</b> Digital <b>✳</b> Content <b>✳</b> Paid Media <b>✳</b> Branding <b>✳</b> Digital <b>✳</b></div></div></div>
 
     <section class="intro section-grid" id="nosotros" aria-labelledby="intro-title">
       <p class="section-label">01 / La idea</p>
@@ -71,7 +71,7 @@ import '../styles/global.css';
         gsap.utils.toArray<HTMLElement>('.reveal').forEach((element) => {
           gsap.fromTo(element, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power2.out', scrollTrigger: { trigger: element, start: 'top 88%', once: true } });
         });
-        gsap.fromTo('.ticker div', { xPercent: 0 }, { xPercent: -18, ease: 'none', scrollTrigger: { trigger: '.ticker', start: 'top bottom', end: 'bottom top', scrub: 1 } });
+        gsap.to('.ticker-track', { xPercent: -50, duration: 18, repeat: -1, ease: 'none' });
       });
     }
     document.querySelector<HTMLFormElement>('#contact-form')?.addEventListener('submit', (event) => {

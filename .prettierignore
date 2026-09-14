@@ -1,0 +1,4 @@
+.astro/
+dist/
+design-system/
+node_modules/

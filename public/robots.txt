@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nexa-agencia.pages.dev/sitemap.xml

@@ -88,7 +88,7 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Depende de: X-T8
 - Devlog: devlog/2026-09-14/010-seccion-trabajo.md
 
-### X-T10 · Trabajo a ancho completo y publicación [M] [doing]
+### X-T10 · Trabajo a ancho completo y publicación [M] [done]
 
 - Skill: ui-ux-pro-max §layout + code-quality §delivery
 - Archivos: src/styles/global.css

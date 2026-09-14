@@ -33,3 +33,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build
 - Depende de: F1-T2
 - Devlog: —
+
+### X-T4 · Spatial scroll multidireccional [M] [done]
+
+- Skill: threejs-webgl §scroll-driven 3D + gsap-scrolltrigger §ScrollTrigger + web3d-integration-patterns §Pattern 1
+- Archivos: src/pages/index.astro, src/styles/global.css, src/scripts/scroll-scene.ts
+- Hecho cuando: las secciones de contenido tienen desplazamientos laterales, diagonales y de profundidad en escritorio; el scroll es estable y los modos móvil/reduced-motion no fuerzan transformaciones.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual en preview local.
+- Depende de: 3cc1fc2
+- Devlog: devlog/2026-09-14/005-spatial-scroll.md

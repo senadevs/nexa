@@ -880,6 +880,10 @@ footer p {
 .service-card summary:hover {
   background: var(--lime);
 }
+.spatial-section {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
 .service-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -907,6 +911,10 @@ footer p {
   filter: saturate(0.84);
 }
 @media (max-width: 800px) {
+  .spatial-section {
+    transform: none !important;
+    will-change: auto;
+  }
   .hero-content {
     padding: 18vw 5vw 15vw;
   }

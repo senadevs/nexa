@@ -8,3 +8,4 @@
 - **Fallback obligatorio:** cada escena mantiene una imagen editorial visible si WebGL no está disponible, en móvil o con movimiento reducido.
 - **Contenido como estructura:** las seis áreas de servicio son desplegables y tienen copy e imagen propios; la página de trabajos queda separada para poder crecer en SEO y casos de estudio.
 - **Calidad del repositorio:** se excluyen dependencias, artefactos de Astro y builds generadas del control de versiones mediante `.gitignore`.
+- **Spatial scroll:** los bloques narrativos usan pequeñas trayectorias laterales, diagonales y de profundidad; la escena Three.js central conserva el cambio de formas y no se fuerza el efecto en móvil.

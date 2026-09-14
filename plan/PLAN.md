@@ -123,3 +123,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual en `/en/`.
 - Depende de: X-T12
 - Devlog: devlog/2026-09-14/014-seo-bilingue.md
+
+### X-T14 · Navegación responsive y hero de trabajo [M] [done]
+
+- Skills: front-activation + ui-ux-pro-max + modern-web-design
+- Archivos: src/layouts/BaseLayout.astro, src/pages/**/*.astro, src/styles/global.css
+- Hecho cuando: el nav tiene estados hover/focus, el CTA inglés tiene jerarquía correcta, existe menú móvil accesible y el portfolio se adapta sin recortes rígidos.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual y apertura del menú en `/en/` y `/en/trabajos/`.
+- Depende de: X-T13
+- Devlog: devlog/2026-09-14/015-nav-responsive.md

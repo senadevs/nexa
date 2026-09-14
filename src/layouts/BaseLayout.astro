@@ -71,6 +71,58 @@ const englishUrl = Astro.site ? new URL(englishPath, Astro.site).toString() : ne
         localStorage.setItem('nexa-language', 'en');
         location.replace(`/en${location.pathname === '/' ? '/' : location.pathname}`);
       }
+      const headers = [...document.querySelectorAll('.site-header')];
+      let previousY = window.scrollY;
+      let previousTime = performance.now();
+      let scrollStopTimer;
+      const updateHeaderSurface = () => {
+        const now = performance.now();
+        const currentY = window.scrollY;
+        const distance = Math.abs(currentY - previousY);
+        const elapsed = Math.max(now - previousTime, 1);
+        const velocity = distance / elapsed;
+        const returnDuration = Math.round(Math.max(220, Math.min(520, 520 - velocity * 140)));
+        headers.forEach((header) => {
+          header.classList.toggle('is-scrolled', currentY > 16);
+          header.style.setProperty('--header-return-duration', `${returnDuration}ms`);
+          if (currentY > 16 && !header.classList.contains('menu-open')) header.classList.add('is-moving');
+        });
+        window.clearTimeout(scrollStopTimer);
+        const idleDelay = Math.round(Math.max(110, Math.min(240, 110 + velocity * 45)));
+        scrollStopTimer = window.setTimeout(() => {
+          headers.forEach((header) => header.classList.remove('is-moving'));
+        }, idleDelay);
+        if (currentY <= 16) headers.forEach((header) => header.classList.remove('is-moving'));
+        previousY = currentY;
+        previousTime = now;
+      };
+      headers.forEach((header) => header.classList.toggle('is-scrolled', window.scrollY > 16));
+      window.addEventListener('scroll', updateHeaderSurface, { passive: true });
+      document.querySelectorAll('.menu-toggle').forEach((button) => {
+        button.addEventListener('click', () => {
+          const header = button.closest('.site-header');
+          const open = !header?.classList.contains('menu-open');
+          header?.classList.toggle('menu-open', open);
+          document.body.classList.toggle('menu-active', open);
+          button.setAttribute('aria-expanded', String(open));
+        });
+      });
+      document.querySelectorAll('.mobile-menu a').forEach((link) => {
+        link.addEventListener('click', () => {
+          const header = link.closest('.site-header');
+          header?.classList.remove('menu-open');
+          document.body.classList.remove('menu-active');
+          header?.querySelector('.menu-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        document.querySelectorAll('.site-header.menu-open').forEach((header) => {
+          header.classList.remove('menu-open');
+          header.querySelector('.menu-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+        document.body.classList.remove('menu-active');
+      });
     </script>
   </body>
 </html>

@@ -22,4 +22,4 @@
 
 ## Commit
 
-- Pendiente de crear en este cierre.
+- `4a734dd` — `fix: strengthen header and scroll intro`

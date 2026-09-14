@@ -121,6 +121,18 @@ footer p {
   font-size: 1rem;
   margin-left: 12px;
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.language-switch {
+  font: 700 0.68rem var(--mono);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+}
 .hero {
   min-height: calc(100svh - 88px);
   display: grid;
@@ -584,6 +596,12 @@ footer p {
   }
   .site-header nav {
     display: none;
+  }
+  .header-actions {
+    gap: 0.7rem;
+  }
+  .language-switch {
+    font-size: 0.58rem;
   }
   .header-cta {
     font-size: 0.6rem;
@@ -1198,6 +1216,11 @@ footer p {
   max-width: 330px;
   line-height: 1.5;
   margin: 3rem 0 2rem;
+}
+.work-heading > p + p {
+  margin-top: -1.2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 .work-feature {
   min-width: 0;

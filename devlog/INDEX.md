@@ -15,3 +15,4 @@
 | 011 | 2026-09-14 | Trabajo a ancho completo y publicación | fix     | 010      | X-T10        |
 | 012 | 2026-09-14 | Visuales de portfolio y footer         | feature | 008      | X-T11        |
 | 013 | 2026-09-14 | Header legible y entrada del scroll    | fix     | 012      | X-T12        |
+| 014 | 2026-09-14 | SEO técnico y versión bilingüe        | feature | 013      | X-T13        |

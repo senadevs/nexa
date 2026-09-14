@@ -114,3 +114,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual en `/`.
 - Depende de: X-T11
 - Devlog: devlog/2026-09-14/013-header-scroll.md
+
+### X-T13 · SEO técnico y versión bilingüe [M] [done]
+
+- Skill: ui-ux-pro-max §SEO/a11y + code-quality §Astro
+- Archivos: src/layouts/BaseLayout.astro, src/pages/en/*, public/llms.txt, public/sitemap.xml
+- Hecho cuando: existe contenido indexable en castellano e inglés, alternates hreflang, metadatos sociales, robots, sitemap y selector de idioma.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual en `/en/`.
+- Depende de: X-T12
+- Devlog: devlog/2026-09-14/014-seo-bilingue.md

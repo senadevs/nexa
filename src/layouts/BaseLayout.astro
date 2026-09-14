@@ -2,37 +2,54 @@
 interface Props {
   title?: string;
   description?: string;
+  lang?: 'es' | 'en';
+  ogImage?: string;
 }
 
 const {
   title = 'Nexa — Agencia de marketing digital',
   description = 'Estrategia, diseño y contenido para marcas que quieren avanzar.',
+  lang = 'es',
+  ogImage = '/images/marea-case.png',
 } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.toString();
+const basePath = Astro.url.pathname.startsWith('/en') ? Astro.url.pathname.replace(/^\/en/, '') || '/' : Astro.url.pathname;
+const spanishUrl = Astro.site ? new URL(basePath, Astro.site).toString() : new URL(basePath, Astro.url).toString();
+const englishPath = basePath === '/' ? '/en/' : `/en${basePath}`;
+const englishUrl = Astro.site ? new URL(englishPath, Astro.site).toString() : new URL(englishPath, Astro.url).toString();
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#151515" />
+    <meta name="theme-color" content="#201F1C" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Nexa Digital Agency" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={spanishUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={spanishUrl} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Nexa Digital Agency" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site ?? Astro.url).toString()} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site ?? Astro.url).toString()} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'Nexa',
       description,
       url: canonical,
+      inLanguage: lang,
       email: 'hola@nexa.agency',
       areaServed: 'ES',
       knowsAbout: ['Branding', 'Marketing digital', 'Diseño web', 'Paid media', 'Producción audiovisual'],
@@ -41,9 +58,19 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23d6f43e'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='60' font-family='Arial'%3EN%3C/text%3E%3C/svg%3E" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23FF5E1E'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='60' font-family='Arial'%3EN%3C/text%3E%3C/svg%3E" />
   </head>
   <body>
     <slot />
+    <script is:inline>
+      const browserLanguage = navigator.language?.toLowerCase() ?? '';
+      const hasChosenLanguage = localStorage.getItem('nexa-language');
+      const isEnglishBrowser = browserLanguage.startsWith('en');
+      const isEnglishPage = location.pathname.startsWith('/en');
+      if (!hasChosenLanguage && isEnglishBrowser && !isEnglishPage) {
+        localStorage.setItem('nexa-language', 'en');
+        location.replace(`/en${location.pathname === '/' ? '/' : location.pathname}`);
+      }
+    </script>
   </body>
 </html>

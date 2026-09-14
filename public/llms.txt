@@ -1,0 +1,24 @@
+# Nexa Digital Agency
+
+> Nexa is a digital marketing agency based in Madrid, Spain. We create strategy, identity and digital experiences for ambitious brands.
+
+## Website
+
+- Spanish home: https://nexa-agencia.pages.dev/
+- English home: https://nexa-agencia.pages.dev/en/
+- Spanish work: https://nexa-agencia.pages.dev/trabajos/
+- English work: https://nexa-agencia.pages.dev/en/trabajos/
+
+## Services
+
+- Graphic design
+- Branding and visual identity
+- Digital strategy and creativity
+- Paid media
+- Web design and development
+- Audiovisual production
+
+## Contact
+
+- Email: hola@nexa.agency
+- Location: Madrid, Spain

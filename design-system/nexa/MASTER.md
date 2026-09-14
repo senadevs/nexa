@@ -36,7 +36,7 @@
 | On Destructive | `#FFFFFF` | `--color-on-destructive` |
 | Ring | `#EC4899` | `--color-ring` |
 
-**Color Notes:** Carbón, gris grafito, coral naranja y melocotón, tomados del logotipo Nexa Digital Agency.
+**Color Notes:** Paleta oficial tomada del logotipo Nexa Digital Agency: naranja `#FF5E1E`, negro `#201F1C`, grafito `#3F3B35`, beige `#D0C7BB` y marfil `#FFFDF1`.
 
 ### Typography
 

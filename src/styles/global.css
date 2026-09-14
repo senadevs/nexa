@@ -1,9 +1,9 @@
 :root {
-  --ink: #272727;
-  --paper: #f8f8f7;
-  --lime: #f36b48;
-  --muted: #686a6d;
-  --line: rgba(39, 39, 39, 0.2);
+  --ink: #201f1c;
+  --paper: #fffdf1;
+  --lime: #ff5e1e;
+  --muted: #6f6a62;
+  --line: rgba(63, 59, 53, 0.24);
   --sans: "Manrope", sans-serif;
   --mono: "DM Mono", monospace;
 }
@@ -44,6 +44,23 @@ a:focus-visible {
   letter-spacing: -0.09em;
   text-decoration: none;
   font-size: 1.45rem;
+}
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  width: 112px;
+  height: 58px;
+  overflow: hidden;
+}
+.brand-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.brand-logo-footer {
+  width: 148px;
+  filter: grayscale(1) brightness(0) invert(1);
 }
 .wordmark span:first-child {
   display: inline-grid;
@@ -168,7 +185,7 @@ h2 {
 .video-wrap {
   height: min(68vh, 660px);
   overflow: hidden;
-  background: #36383b;
+  background: #3f3b35;
   border-radius: 48% 48% 0 0;
   position: relative;
 }
@@ -315,7 +332,7 @@ h2 {
 }
 .clients .section-label,
 .clients .section-aside {
-  color: #919187;
+  color: #d0c7bb;
 }
 .client-content {
   grid-column: 2;
@@ -326,19 +343,19 @@ h2 {
 .client-logos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgba(241, 240, 234, 0.25);
+  border-top: 1px solid rgba(255, 253, 241, 0.25);
 }
 .client-logos span {
   min-height: 150px;
   display: grid;
   place-items: center;
-  border-bottom: 1px solid rgba(241, 240, 234, 0.25);
+  border-bottom: 1px solid rgba(255, 253, 241, 0.25);
   font-size: 1.45rem;
   letter-spacing: -0.06em;
 }
 .client-logos span:nth-child(3n + 1),
 .client-logos span:nth-child(3n + 2) {
-  border-right: 1px solid rgba(241, 240, 234, 0.25);
+  border-right: 1px solid rgba(255, 253, 241, 0.25);
 }
 .client-logos .serif {
   font:
@@ -486,7 +503,7 @@ footer .wordmark span:first-child {
   color: var(--ink);
 }
 footer p {
-  color: #a5a59c;
+  color: #d0c7bb;
   margin: 0;
 }
 .footer-main,
@@ -507,9 +524,9 @@ footer p {
   text-decoration: none;
 }
 .footer-bottom {
-  border-top: 1px solid rgba(248, 248, 247, 0.24);
+  border-top: 1px solid rgba(255, 253, 241, 0.24);
   padding-top: 1rem;
-  color: #b2b3b5;
+  color: #d0c7bb;
   font: 400 0.68rem var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -539,6 +556,10 @@ footer p {
 @media (max-width: 800px) {
   .site-header {
     height: 72px;
+  }
+  .brand-logo-link {
+    width: 92px;
+    height: 52px;
   }
   .site-header nav {
     display: none;
@@ -601,7 +622,7 @@ footer p {
     border-right: 0;
   }
   .client-logos span:nth-child(odd) {
-    border-right: 1px solid rgba(241, 240, 234, 0.25);
+    border-right: 1px solid rgba(255, 253, 241, 0.25);
   }
   .contact-inner {
     display: block;
@@ -635,6 +656,9 @@ footer p {
   .footer-bottom {
     display: grid;
     gap: 1.2rem;
+  }
+  .brand-logo-footer {
+    width: 126px;
   }
   .footer-main p {
     font-size: 0.56rem;
@@ -670,7 +694,7 @@ footer p {
   position: absolute;
   right: 5vw;
   bottom: 5vw;
-  color: rgba(241, 240, 234, 0.55);
+  color: rgba(255, 253, 241, 0.55);
   font: 400 0.65rem var(--mono);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -911,7 +935,7 @@ footer p {
 }
 .hero-kicker {
   margin: 0 0 7vw;
-  color: rgba(241, 240, 234, 0.76);
+  color: rgba(255, 253, 241, 0.76);
 }
 .hero-slide[hidden] {
   display: none;
@@ -941,7 +965,7 @@ footer p {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border-bottom: 1px solid rgba(241, 240, 234, 0.6);
+  border-bottom: 1px solid rgba(255, 253, 241, 0.6);
   padding-bottom: 9px;
 }
 .hero-link span {
@@ -959,7 +983,7 @@ footer p {
 .hero-progress span {
   width: 36px;
   height: 2px;
-  background: rgba(241, 240, 234, 0.35);
+  background: rgba(255, 253, 241, 0.35);
   transition:
     background 0.25s,
     width 0.25s;
@@ -1083,7 +1107,7 @@ footer p {
 .scene-shell {
   height: min(68vh, 660px);
   overflow: hidden;
-  background: #36383b;
+  background: #3f3b35;
   border-radius: 48% 48% 0 0;
   position: relative;
 }
@@ -1121,7 +1145,7 @@ footer p {
   z-index: 2;
 }
 .work-preview {
-  background: #deddd5;
+  background: #d0c7bb;
 }
 .work-body {
   grid-column: 2;
@@ -1208,7 +1232,7 @@ footer p {
   color: var(--paper);
 }
 .art-pink {
-  background: #ffad98;
+  background: #d0c7bb;
 }
 .project h2 {
   font-size: 2rem;

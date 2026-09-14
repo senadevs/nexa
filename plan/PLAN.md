@@ -60,3 +60,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual y envío de prueba.
 - Depende de: X-T5
 - Devlog: devlog/2026-09-14/007-contacto-footer.md
+
+### X-T7 · Logo SVG y paleta oficial [S] [done]
+
+- Skill: brand §logo y paleta + ui-ux-pro-max §tokens
+- Archivos: public/nexa-logo.svg, src/pages/index.astro, src/pages/trabajos.astro, src/styles/global.css, src/scripts/scroll-scene.ts
+- Hecho cuando: el logo original aparece en header/footer y los tokens visuales coinciden con la paleta entregada.
+- Verificar: npm run check; npm run lint; npm run build; revisión visual local.
+- Depende de: X-T6
+- Devlog: devlog/2026-09-14/008-logo-paleta-oficial.md

@@ -16,3 +16,10 @@
 - **Bento de clientes con posiciones explícitas (020):** en vez de `grid-auto-flow: dense`, cada pieza se coloca por breakpoint para que el puzzle encaje sin huecos en 12, 6 y 2 columnas.
 - **Imágenes del hero en card, no de fondo (021):** se cumple la petición de imágenes que pasan sin perder la legibilidad del titular; el titular se limita por fórmula para no invadir la card.
 - **Pausa obligatoria (021):** cualquier contenido que se mueva solo más de 5 s lleva control de pausa (WCAG 2.2.2).
+- **Cortina en vez de smooth scroll (022):** navegar por anclas no enseña el scroll; la cortina oculta el salto instantáneo. Lenis queda descartado por ahora (no se pidió suavizar la rueda y añade dependencia).
+- **Loader por sesión (022):** `sessionStorage`, saltable y con tope de 1,6 s de espera, siguiendo `performance-a11y` de gsap-scrolltrigger.
+- **Sin botones magnéticos (023):** el cliente los percibe como confusos; los CTA solo elevan 2px y ruedan el texto.
+- **Originales fuera de public (023):** `assets/source/` guarda los PNG; lo publicado son WebP generados por script.
+- **Redirección de idioma conservada (023):** se mantiene la decisión del 014 pero sin afectar a bots, antes del pintado y sin romper el menú si falla el almacenamiento.
+- **Sin cursor personalizado (024):** el cliente lo vio feo; la pista de card clicable es el círculo con flecha de los botones, coherente con la marca y sin tapar contenido.
+- **Encuadre 3D calculado (024):** la cámara se ajusta al aspecto del lienzo en vez de una distancia fija.

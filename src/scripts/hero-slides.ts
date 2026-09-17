@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { whenSiteReady } from "./site-transitions";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -85,7 +86,6 @@ const start = () => {
     const current = index;
     index = (index + 1) % slides.length;
     if (index === 0) gsap.set(segments, { scaleX: 0 });
-    if (counter) counter.textContent = String(index + 1).padStart(2, "0");
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -97,6 +97,10 @@ const start = () => {
       },
     });
     transition = tl;
+    // The counter changes with the word, not before it.
+    tl.add(() => {
+      if (counter) counter.textContent = String(index + 1).padStart(2, "0");
+    }, 0.3);
 
     if (reduceMotion) {
       tl.to([words[current], slides[current]], {
@@ -179,4 +183,4 @@ const start = () => {
   hold();
 };
 
-document.fonts.ready.then(start);
+whenSiteReady().then(start);

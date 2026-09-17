@@ -18,7 +18,7 @@ const clientLogos = [
   { name: 'marea', style: 'sans', tone: 'ink' },
   { name: 'norte', style: 'serif', tone: 'sand' },
   { name: 'ORBITA', style: 'wide', tone: 'orange' },
-  { name: lang === 'es' ? 'estudio 44' : 'studio 44', style: 'serif italic', tone: 'line' },
+  { name: 'estudio 44', style: 'serif italic', tone: 'line' },
   { name: 'croma', style: 'sans dot', tone: 'graphite' },
   { name: 'lumen', style: 'serif', tone: 'line' },
 ];
@@ -43,8 +43,8 @@ const manifestoWords = t.manifesto.text.split(' ');
       <div class="hero-bottom">
         <p class="lead hero-lead">{t.hero.lead}</p>
         <div class="hero-actions">
-          <Button label={t.hero.primary} href={`#${s.anchors.contact}`} size="lg" icon="arrow-up-right" magnetic />
-          <Button label={t.hero.secondary} href={`#${s.anchors.work}`} variant="ghost" size="lg" magnetic />
+          <Button label={t.hero.primary} href={`#${s.anchors.contact}`} size="lg" icon="arrow-up-right" />
+          <Button label={t.hero.secondary} href={`#${s.anchors.work}`} variant="ghost" size="lg" />
         </div>
       </div>
       <div class="hero-showcase">
@@ -85,11 +85,12 @@ const manifestoWords = t.manifesto.text.split(' ');
     </div>
   </section>
 
-  <div class="marquee" aria-label={t.marquee.join(', ')}>
+  <!-- Decorative: the services are listed as real content further down. -->
+  <div class="marquee" aria-hidden="true">
     <div class="marquee-band marquee-band-orange">
       <div class="marquee-track" data-marquee="1">
-        {[0, 1].map((copy) => (
-          <div class="marquee-group" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {[0, 1].map(() => (
+          <div class="marquee-group">
             {t.marquee.map((item) => (
               <span class="marquee-item">
                 {item}
@@ -135,7 +136,7 @@ const manifestoWords = t.manifesto.text.split(' ');
     </div>
   </section>
 
-  <section class="section clients" id={s.anchors.clients} aria-labelledby="clients-title">
+  <section class="section clients" id={s.anchors.clients} data-label={s.nav.clients} aria-labelledby="clients-title">
     <div class="container">
       <h2 class="display-title clients-title" id="clients-title" data-reveal-title>{t.clients.title} <em>{t.clients.titleAccent}</em></h2>
       <ul class="client-bento" role="list">
@@ -151,7 +152,7 @@ const manifestoWords = t.manifesto.text.split(' ');
     </div>
   </section>
 
-  <section class="section services sheet sheet-ink" id={s.anchors.services} aria-labelledby="services-title">
+  <section class="section services sheet sheet-ink" id={s.anchors.services} data-label={s.nav.services} aria-labelledby="services-title">
     <div class="container">
       <div class="split-title">
         <h2 class="display-title" id="services-title" data-reveal-title>{t.services.title} <em>{t.services.titleAccent}</em></h2>
@@ -175,7 +176,16 @@ const manifestoWords = t.manifesto.text.split(' ');
                   <a class="text-link" href={`#${s.anchors.contact}`} data-service={item.service}>{item.cta}<Icon name="arrow-up-right" /></a>
                 </div>
                 <figure class="service-media">
-                  <img src={item.image} alt={item.alt} width="1200" height="900" loading="lazy" decoding="async" />
+                  <img
+                    src={`/images/services/${item.image}-1200.webp`}
+                    srcset={`/images/services/${item.image}-800.webp 800w, /images/services/${item.image}-1200.webp 1200w`}
+                    sizes="(min-width: 801px) 55vw, 90vw"
+                    alt={item.alt}
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
               </div>
             </div>
@@ -185,7 +195,7 @@ const manifestoWords = t.manifesto.text.split(' ');
     </div>
   </section>
 
-  <section class="section work sheet sheet-paper" id={s.anchors.work} aria-labelledby="work-title">
+  <section class="section work sheet sheet-paper" id={s.anchors.work} data-label={s.nav.work} aria-labelledby="work-title">
     <div class="work-pin">
       <div class="container work-header">
         <div class="split-title">
@@ -200,9 +210,19 @@ const manifestoWords = t.manifesto.text.split(' ');
         <ul class="work-track" role="list">
           {t.work.items.map((item) => (
             <li class="work-item">
-              <a class="work-card" href={s.workPage} data-cursor={t.work.cursor}>
+              <a class="work-card" href={s.workPage}>
+                <span class="work-arrow" aria-hidden="true"><Icon name="arrow-up-right" /></span>
                 <figure class="work-media">
-                  <img src={item.image} alt={item.alt} width="1600" height="1100" loading="lazy" decoding="async" />
+                  <img
+                    src={`/images/work/${item.image}-1400.webp`}
+                    srcset={`/images/work/${item.image}-800.webp 800w, /images/work/${item.image}-1400.webp 1400w`}
+                    sizes="(min-width: 1025px) 62vw, 84vw"
+                    alt={item.alt}
+                    width="1400"
+                    height="1050"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
                 <div class="work-info">
                   <span class="work-category">{item.category}</span>
@@ -224,7 +244,7 @@ const manifestoWords = t.manifesto.text.split(' ');
     </div>
   </section>
 
-  <section class="section process immersive-break sheet sheet-ink" id={s.anchors.process} aria-labelledby="process-title">
+  <section class="section process immersive-break sheet sheet-ink" id={s.anchors.process} data-label={t.process.label} aria-labelledby="process-title">
     <h2 class="sr-only" id="process-title">{t.process.label}</h2>
     <div class="process-grid">
       <div class="immersive-copy">
@@ -237,13 +257,13 @@ const manifestoWords = t.manifesto.text.split(' ');
         ))}
       </div>
       <div class="immersive-stage">
-        <img class="immersive-fallback" src="/images/branding-v2.png" alt="" width="1200" height="900" loading="lazy" />
-        <canvas id="scroll-canvas" aria-label={t.process.canvas}></canvas>
+        <img class="immersive-fallback" src="/images/services/branding-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async" />
+        <canvas id="scroll-canvas" aria-hidden="true"></canvas>
       </div>
     </div>
   </section>
 
-  <section class="section contact sheet sheet-orange" id={s.anchors.contact} aria-labelledby="contact-title">
+  <section class="section contact sheet sheet-orange" id={s.anchors.contact} data-label={s.nav.contact} aria-labelledby="contact-title">
     <div class="container">
       <h2 class="contact-title" id="contact-title" data-reveal-title>{t.contact.title} <em>{t.contact.titleAccent}</em></h2>
       <div class="contact-grid">
@@ -303,7 +323,6 @@ const manifestoWords = t.manifesto.text.split(' ');
 
 <SiteFooter lang={lang} />
 
-<div class="cursor-follower" aria-hidden="true"><span></span></div>
 
 <script>
   import '../../scripts/scroll-scene';

@@ -176,6 +176,7 @@
   transform: scaleX(0);
   transform-origin: left;
 }
+/* Without JS the first segment shows as complete. */
 .hero-progress .is-done i {
   transform: scaleX(1);
 }
@@ -767,38 +768,32 @@
   transform-origin: left;
 }
 
-/* Cursor follower (fine pointers only) */
-.cursor-follower {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 150;
-  pointer-events: none;
-  display: none;
-}
-.cursor-follower span {
+/* Card affordance: same circular arrow as the buttons; grows and turns on hover/focus. */
+.work-arrow {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.75rem);
+  right: clamp(1rem, 2vw, 1.75rem);
+  z-index: 1;
   display: grid;
   place-items: center;
-  width: 7.5rem;
-  height: 7.5rem;
-  margin: -3.75rem 0 0 -3.75rem;
+  width: clamp(3rem, 4.5vw, 4.25rem);
+  height: clamp(3rem, 4.5vw, 4.25rem);
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--paper);
   color: var(--ink);
-  font: 700 0.95rem var(--sans);
-  transform: scale(0);
-  transition: transform 0.35s var(--ease-out);
+  font-size: 1.35rem;
+  transition:
+    transform 0.5s var(--ease-out),
+    background var(--dur) ease;
 }
-.cursor-follower.is-visible span {
-  transform: scale(1);
+.work-card:hover .work-arrow,
+.work-card:focus-visible .work-arrow {
+  background: var(--orange);
+  transform: scale(1.15);
 }
-@media (hover: hover) and (pointer: fine) {
-  .cursor-follower {
-    display: block;
-  }
-  .work-card[data-cursor] {
-    cursor: none;
-  }
+.work-card:hover .work-arrow .icon,
+.work-card:focus-visible .work-arrow .icon {
+  transform: rotate(45deg);
 }
 
 /* ---------- Process (3D scroll story) ---------- */
@@ -821,10 +816,23 @@
   align-content: center;
   gap: 1.5rem;
   opacity: 0.28;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease;
 }
+.immersive-step > * {
+  transition: transform 0.8s var(--ease-out);
+}
+.immersive-step:not(.is-active) > * {
+  transform: translateY(1.5rem);
+}
+.immersive-step:not(.is-active) > p {
+  transform: translateY(2.5rem);
+}
+.process.no-webgl .immersive-step,
 .immersive-step.is-active {
   opacity: 1;
+}
+.process.no-webgl .immersive-step > * {
+  transform: none;
 }
 .step-number {
   font: 800 clamp(4rem, 10vw, 10rem) / 0.8 var(--display);
@@ -856,6 +864,10 @@
   z-index: 1;
   width: 100%;
   height: 100%;
+}
+/* Static image only when WebGL is unavailable (it used to peek out behind the 3D shapes). */
+.process.has-webgl .immersive-fallback {
+  display: none;
 }
 .immersive-fallback {
   width: min(70%, 460px);
@@ -908,9 +920,7 @@
   border-bottom: 1px solid var(--ink);
 }
 .contact-channels small {
-  font: 500 var(--fs-eyebrow) var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font: 600 0.875rem var(--sans);
 }
 .contact-channels a {
   display: inline-flex;
@@ -924,7 +934,9 @@
   text-decoration: none;
 }
 .contact-channels a:hover {
-  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
 }
 .contact-form {
   display: grid;
@@ -952,9 +964,7 @@
   border-color: var(--orange);
 }
 .form-field label {
-  font: 500 var(--fs-eyebrow) var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font: 600 0.875rem var(--sans);
   color: var(--text-inverse-muted);
 }
 .form-field input,
@@ -1053,6 +1063,10 @@
     padding-block: 3rem;
     opacity: 1;
   }
+  .immersive-step > *,
+  .immersive-step:not(.is-active) > * {
+    transform: none;
+  }
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1079,9 +1093,6 @@
   .hero-counter {
     font-size: 2rem;
   }
-  .hero {
-    min-height: 100svh;
-  }
   .hero-actions,
   .hero-actions .btn {
     width: 100%;
@@ -1089,15 +1100,25 @@
   .manifesto-foot {
     display: grid;
   }
+  /* Mobile: one row per figure (number + label side by side) instead of three cramped columns. */
   .stats {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+  }
+  .stat {
+    grid-template-columns: 6.5rem 1fr;
+    align-items: center;
     gap: 1rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--line);
   }
   .stat-value {
-    font-size: clamp(2.4rem, 12vw, 3.6rem);
+    font-size: 3rem;
   }
   .stat-label {
-    font-size: 0.85rem;
+    max-width: none;
+    font-size: 1rem;
   }
   .client-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1177,5 +1198,9 @@
 @media (prefers-reduced-motion: reduce) {
   .immersive-step {
     opacity: 1;
+  }
+  .immersive-step > *,
+  .immersive-step:not(.is-active) > * {
+    transform: none;
   }
 }

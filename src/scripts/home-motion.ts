@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { whenSiteReady } from "./site-transitions";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -22,7 +23,7 @@ const countUp = (element: HTMLElement) => {
 };
 
 if (!reduceMotion) {
-  document.fonts.ready.then(() => {
+  whenSiteReady().then(() => {
     // Hero intro: giant lines rise from their mask.
     gsap.from(".hero-title .line-inner", {
       yPercent: 105,
@@ -78,6 +79,15 @@ if (!reduceMotion) {
         repeat: -1,
       });
     });
+    const settle = gsap.delayedCall(0.25, () =>
+      gsap.to(loops, {
+        timeScale: 1,
+        duration: 1.2,
+        ease: "power2.out",
+        overwrite: true,
+      }),
+    );
+    settle.pause();
     ScrollTrigger.create({
       trigger: ".marquee",
       start: "top bottom",
@@ -85,13 +95,10 @@ if (!reduceMotion) {
       onToggle: (self) =>
         loops.forEach((loop) => (self.isActive ? loop.play() : loop.pause())),
       onUpdate: (self) => {
+        // One tween per loop, replaced on every update, then a single delayed decay back to 1.
         const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 350, 5);
-        loops.forEach((loop) => {
-          gsap
-            .timeline({ overwrite: true })
-            .to(loop, { timeScale: boost, duration: 0.2 })
-            .to(loop, { timeScale: 1, duration: 1.2, ease: "power2.out" });
-        });
+        gsap.to(loops, { timeScale: boost, duration: 0.2, overwrite: true });
+        settle.restart(true);
       },
     });
 
@@ -235,77 +242,6 @@ if (!reduceMotion) {
       return () => section.classList.remove("is-horizontal");
     });
 
-    media.add("(hover: hover) and (pointer: fine)", () => {
-      // Magnetic buttons: pulled towards the pointer, elastic return on leave.
-      const magnets = [
-        ...document.querySelectorAll<HTMLElement>("[data-magnetic]"),
-      ];
-      const cleanups = magnets.map((button) => {
-        const pull = (event: PointerEvent) => {
-          const rect = button.getBoundingClientRect();
-          gsap.to(button, {
-            x: (event.clientX - rect.left - rect.width / 2) * 0.3,
-            y: (event.clientY - rect.top - rect.height / 2) * 0.3,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        };
-        const release = () =>
-          gsap.to(button, {
-            x: 0,
-            y: 0,
-            duration: 0.6,
-            ease: "elastic.out(1, 0.35)",
-          });
-        button.addEventListener("pointermove", pull);
-        button.addEventListener("pointerleave", release);
-        return () => {
-          button.removeEventListener("pointermove", pull);
-          button.removeEventListener("pointerleave", release);
-          gsap.set(button, { clearProps: "transform" });
-        };
-      });
-
-      const follower = document.querySelector<HTMLElement>(".cursor-follower");
-      const label = follower?.querySelector("span");
-      if (!follower || !label) return;
-      const x = gsap.quickTo(follower, "x", {
-        duration: 0.45,
-        ease: "power3.out",
-      });
-      const y = gsap.quickTo(follower, "y", {
-        duration: 0.45,
-        ease: "power3.out",
-      });
-      const move = (event: PointerEvent) => {
-        x(event.clientX);
-        y(event.clientY);
-      };
-      window.addEventListener("pointermove", move, { passive: true });
-      const targets = [
-        ...document.querySelectorAll<HTMLElement>("[data-cursor]"),
-      ];
-      const enter = (event: Event) => {
-        label.textContent =
-          (event.currentTarget as HTMLElement).dataset.cursor ?? "";
-        follower.classList.add("is-visible");
-      };
-      const leave = () => follower.classList.remove("is-visible");
-      targets.forEach((target) => {
-        target.addEventListener("pointerenter", enter);
-        target.addEventListener("pointerleave", leave);
-        target.addEventListener("focus", leave);
-      });
-      return () => {
-        cleanups.forEach((cleanup) => cleanup());
-        window.removeEventListener("pointermove", move);
-        targets.forEach((target) => {
-          target.removeEventListener("pointerenter", enter);
-          target.removeEventListener("pointerleave", leave);
-        });
-      };
-    });
-
     // Contact: the form card rises into place.
     gsap.from(".contact-form", {
       y: 60,
@@ -314,5 +250,14 @@ if (!reduceMotion) {
       ease: "power3.out",
       scrollTrigger: { trigger: ".contact-grid", start: "top 85%", once: true },
     });
+
+    // Arriving with a hash (e.g. /#servicios from another page): the browser jumped before the
+    // pins existed, so re-align once the layout is final.
+    if (location.hash) {
+      const target = document.getElementById(
+        decodeURIComponent(location.hash.slice(1)),
+      );
+      target?.scrollIntoView({ behavior: "instant", block: "start" });
+    }
   });
 }

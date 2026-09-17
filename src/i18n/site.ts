@@ -18,6 +18,7 @@ export interface SiteCopy {
     mainNav: string;
     mobileNav: string;
     openMenu: string;
+    closeMenu: string;
     cta: string;
     switchLabel: string;
     switchAria: string;
@@ -65,6 +66,7 @@ export interface HomeCopy {
       service: string;
       text: string;
       tags: string[];
+      /** Slug of public/images/services/<slug>-{800,1200}.webp */
       image: string;
       alt: string;
       tone: Tone;
@@ -75,11 +77,11 @@ export interface HomeCopy {
     titleAccent: string;
     intro: string;
     all: string;
-    cursor: string;
     items: {
       name: string;
       category: string;
       result: string;
+      /** Slug of public/images/work/<slug>-{800,1400}.webp */
       image: string;
       alt: string;
     }[];
@@ -87,7 +89,6 @@ export interface HomeCopy {
   };
   process: {
     label: string;
-    canvas: string;
     steps: { title: string; accent: string; text: string }[];
   };
   contact: {
@@ -116,7 +117,7 @@ export interface HomeCopy {
 export const site: Record<Lang, SiteCopy> = {
   es: {
     home: "/",
-    workPage: "/trabajos",
+    workPage: "/trabajos/",
     anchors: {
       clients: "clientes",
       services: "servicios",
@@ -135,6 +136,7 @@ export const site: Record<Lang, SiteCopy> = {
       mainNav: "Navegación principal",
       mobileNav: "Navegación móvil",
       openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
       cta: "Hablemos",
       switchLabel: "EN",
       switchAria: "English version",
@@ -174,7 +176,8 @@ export const site: Record<Lang, SiteCopy> = {
       mainNav: "Main navigation",
       mobileNav: "Mobile navigation",
       openMenu: "Open menu",
-      cta: "Start a project",
+      closeMenu: "Close menu",
+      cta: "Let’s talk",
       switchLabel: "ES",
       switchAria: "Versión en español",
       switchHref: "/",
@@ -262,7 +265,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Diseño gráfico",
           text: "Convertimos ideas complejas en sistemas visuales claros, reconocibles y llenos de intención.",
           tags: ["Editorial", "Key visuals", "Packaging", "Social"],
-          image: "/images/graphic-v2.png",
+          image: "graphic",
           alt: "Dirección visual y composición editorial",
           tone: "orange",
           cta: "Pide propuesta de diseño",
@@ -272,7 +275,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Branding",
           text: "Definimos la voz, el lenguaje y la presencia que hacen que una marca se reconozca antes de ser nombrada.",
           tags: ["Naming", "Identidad", "Voz y tono", "Brandbook"],
-          image: "/images/branding-v2.png",
+          image: "branding",
           alt: "Materiales de identidad visual y branding",
           tone: "sand",
           cta: "Pide propuesta de branding",
@@ -282,7 +285,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Estrategia & creatividad",
           text: "Encontramos la idea que conecta el objetivo de negocio con una conversación cultural relevante.",
           tags: ["Insights", "Concepto", "Campañas", "Contenido"],
-          image: "/images/strategy-v2.png",
+          image: "strategy",
           alt: "Dirección creativa para una experiencia digital",
           tone: "graphite",
           cta: "Pide propuesta de estrategia",
@@ -292,7 +295,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Paid media",
           text: "Planificamos, lanzamos y optimizamos campañas para que la inversión se convierta en aprendizaje y crecimiento.",
           tags: ["Meta Ads", "Google Ads", "TikTok Ads", "Analítica"],
-          image: "/images/paid-media-v2.png",
+          image: "paid-media",
           alt: "Planificación visual de una campaña",
           tone: "paper",
           cta: "Pide tu plan de medios",
@@ -302,7 +305,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Diseño web",
           text: "Diseñamos webs rápidas, memorables y preparadas para convertir visitas en oportunidades.",
           tags: ["UX / UI", "Desarrollo", "SEO", "Conversión"],
-          image: "/images/web-v2.png",
+          image: "web",
           alt: "Dirección de una experiencia web digital",
           tone: "orange",
           cta: "Pide propuesta web",
@@ -312,7 +315,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Audiovisual",
           text: "Del concepto al montaje final: damos movimiento a la historia que tu marca necesita contar.",
           tags: ["Guion", "Rodaje", "Motion", "Postproducción"],
-          image: "/images/audiovisual.png",
+          image: "audiovisual",
           alt: "Dirección de arte para producción audiovisual",
           tone: "graphite",
           cta: "Pide propuesta audiovisual",
@@ -326,34 +329,33 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       intro:
         "Identidades, campañas y experiencias digitales construidas para que las marcas ocupen un lugar propio.",
       all: "Ver todos los proyectos",
-      cursor: "Ver caso",
       items: [
         {
           name: "Marea",
           category: "Branding + Digital",
           result: "Una identidad con pulso para cambiar de ritmo.",
-          image: "/images/marea-case.png",
+          image: "marea",
           alt: "Dirección de arte para el proyecto Marea",
         },
         {
           name: "Norte",
           category: "Identidad & estrategia",
           result: "Una nueva forma de mirar lo cotidiano.",
-          image: "/images/norte-case.png",
+          image: "norte",
           alt: "Proyecto de identidad Norte",
         },
         {
           name: "Orbita",
           category: "Campaña & paid media",
           result: "Una campaña que puso la conversación en movimiento.",
-          image: "/images/orbita-case.png",
+          image: "orbita",
           alt: "Proyecto de campaña Orbita",
         },
         {
           name: "Studio",
           category: "Producción audiovisual",
           result: "Historias pensadas para verse en movimiento.",
-          image: "/images/studio-case.png",
+          image: "studio",
           alt: "Dirección de arte para producción audiovisual",
         },
       ],
@@ -365,7 +367,6 @@ export const homeCopy: Record<Lang, HomeCopy> = {
     },
     process: {
       label: "Cómo trabajamos",
-      canvas: "Escena 3D interactiva de Nexa",
       steps: [
         {
           title: "Una idea",
@@ -495,7 +496,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Graphic design",
           text: "We turn complex ideas into clear, recognisable visual systems full of intention.",
           tags: ["Editorial", "Key visuals", "Packaging", "Social"],
-          image: "/images/graphic-v2.png",
+          image: "graphic",
           alt: "Editorial graphic design direction",
           tone: "orange",
           cta: "Request a design proposal",
@@ -505,7 +506,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Branding",
           text: "We define the voice, language and presence that make a brand recognisable before it is named.",
           tags: ["Naming", "Identity", "Tone of voice", "Brandbook"],
-          image: "/images/branding-v2.png",
+          image: "branding",
           alt: "Brand identity materials",
           tone: "sand",
           cta: "Request a branding proposal",
@@ -515,7 +516,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Strategy & creativity",
           text: "We find the idea that connects business goals with a relevant cultural conversation.",
           tags: ["Insights", "Concept", "Campaigns", "Content"],
-          image: "/images/strategy-v2.png",
+          image: "strategy",
           alt: "Digital creative direction",
           tone: "graphite",
           cta: "Request a strategy proposal",
@@ -525,7 +526,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Paid media",
           text: "We plan, launch and optimise campaigns so investment turns into learning and growth.",
           tags: ["Meta Ads", "Google Ads", "TikTok Ads", "Analytics"],
-          image: "/images/paid-media-v2.png",
+          image: "paid-media",
           alt: "Visual campaign planning",
           tone: "paper",
           cta: "Request a media plan",
@@ -535,18 +536,18 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           title: "Web design",
           text: "Fast, memorable websites built to turn visits into opportunities.",
           tags: ["UX / UI", "Development", "SEO", "Conversion"],
-          image: "/images/web-v2.png",
+          image: "web",
           alt: "Digital web experience",
           tone: "orange",
           cta: "Request a web proposal",
           service: "Web design",
         },
         {
-          title: "Film & motion",
+          title: "Film production",
           text: "From concept to final cut: we give movement to the story your brand needs to tell.",
           tags: ["Script", "Shooting", "Motion", "Post-production"],
-          image: "/images/audiovisual.png",
-          alt: "Art direction for audiovisual production",
+          image: "audiovisual",
+          alt: "Art direction for film production",
           tone: "graphite",
           cta: "Request a film proposal",
           service: "Film production",
@@ -559,35 +560,34 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       intro:
         "Identities, campaigns and digital experiences built to give brands a place of their own.",
       all: "See all projects",
-      cursor: "View case",
       items: [
         {
           name: "Marea",
           category: "Branding + Digital",
           result: "An identity with a pulse, made to change pace.",
-          image: "/images/marea-case.png",
+          image: "marea",
           alt: "Marea art direction case study",
         },
         {
           name: "Norte",
           category: "Identity & strategy",
           result: "A new way of looking at everyday life.",
-          image: "/images/norte-case.png",
+          image: "norte",
           alt: "Norte identity project",
         },
         {
           name: "Orbita",
           category: "Campaign & paid media",
           result: "A campaign that set the conversation in motion.",
-          image: "/images/orbita-case.png",
+          image: "orbita",
           alt: "Orbita campaign project",
         },
         {
           name: "Studio",
           category: "Film production",
           result: "Stories designed to be seen in motion.",
-          image: "/images/studio-case.png",
-          alt: "Art direction for audiovisual production",
+          image: "studio",
+          alt: "Art direction for film production",
         },
       ],
       next: {
@@ -598,7 +598,6 @@ export const homeCopy: Record<Lang, HomeCopy> = {
     },
     process: {
       label: "How we work",
-      canvas: "Interactive 3D Nexa scene",
       steps: [
         {
           title: "An idea",
@@ -631,7 +630,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         {
           label: "WhatsApp",
           value: "Write to us",
-          href: "https://wa.me/34600000000",
+          href: "https://wa.me/34600000000?text=Hi%20Nexa%2C%20I%27d%20like%20to%20talk%20about%20a%20project",
         },
         { label: "Based in", value: "Madrid / Spain" },
       ],
@@ -659,5 +658,47 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         subject: "New project",
       },
     },
+  },
+};
+
+export interface WorkPageCopy {
+  title: string;
+  description: string;
+  heading: string;
+  headingAccent: string;
+  intro: string;
+  explore: string;
+  projectsLabel: string;
+  endTitle: string;
+  endCta: string;
+}
+
+/** /trabajos pages. Project cards reuse homeCopy[lang].work so both pages stay in sync. */
+export const workPageCopy: Record<Lang, WorkPageCopy> = {
+  es: {
+    title: "Trabajo — Nexa",
+    description:
+      "Una selección del trabajo de Nexa: marcas, campañas, webs y contenido que dejan huella.",
+    heading: "Hacemos",
+    headingAccent: "que pase.",
+    intro:
+      "Identidad, estrategia y experiencias digitales pensadas para transformar atención en una relación real con la marca.",
+    explore: "Explorar proyectos",
+    projectsLabel: "Proyectos",
+    endTitle: "¿Hacemos el siguiente?",
+    endCta: "Cuéntanos tu idea",
+  },
+  en: {
+    title: "Work — Nexa",
+    description:
+      "Selected Nexa work: brands, campaigns, websites and content built to leave a mark.",
+    heading: "We make",
+    headingAccent: "things happen.",
+    intro:
+      "Identity, strategy and digital experiences designed to turn attention into a genuine relationship with the brand.",
+    explore: "Explore projects",
+    projectsLabel: "Projects",
+    endTitle: "Shall we make the next one?",
+    endCta: "Tell us your idea",
   },
 };

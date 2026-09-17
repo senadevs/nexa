@@ -26,7 +26,6 @@
   --fs-h2: clamp(2.2rem, 5.4vw, 5.6rem);
   --fs-h3: clamp(1.6rem, 3vw, 2.8rem);
   --fs-lead: clamp(1.1rem, 1.35vw, 1.4rem);
-  --fs-eyebrow: 0.75rem;
 
   /* Layout */
   --gutter: clamp(1rem, 4vw, 4rem);
@@ -49,7 +48,6 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 body {
@@ -68,6 +66,11 @@ video,
 svg {
   display: block;
   max-width: 100%;
+}
+/* width/height attributes reserve space; CSS aspect-ratio or height: 100% decides the box. */
+img,
+video {
+  height: auto;
 }
 a {
   color: inherit;
@@ -153,10 +156,9 @@ p {
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-.eyebrow {
-  font: 500 var(--fs-eyebrow) / 1.3 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+/* Small functional labels (form fields, contact channels, footer columns): sans, normal case. */
+.label {
+  font: 600 0.875rem / 1.3 var(--sans);
 }
 .lead {
   font-size: var(--fs-lead);
@@ -205,17 +207,6 @@ p {
 }
 .btn:active {
   transform: translateY(0) scale(0.98);
-}
-/* Magnetic buttons are moved by GSAP; a CSS transform transition would fight it. */
-.btn[data-magnetic] {
-  transition:
-    background var(--dur) ease,
-    color var(--dur) ease,
-    border-color var(--dur) ease;
-}
-.btn[data-magnetic]:hover,
-.btn[data-magnetic]:active {
-  transform: none;
 }
 .btn-label {
   display: grid;
@@ -446,8 +437,7 @@ p {
   height: 44px;
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-  font: 500 0.75rem var(--mono);
-  letter-spacing: 0.06em;
+  font: 700 0.8rem var(--sans);
   text-decoration: none;
   transition:
     background var(--dur-fast) ease,
@@ -455,7 +445,11 @@ p {
 }
 .language-switch:hover {
   background: var(--header-fg);
-  color: var(--orange);
+  color: var(--ink);
+}
+.site-header.is-scrolled .language-switch:hover,
+.site-header[data-surface="orange"] .language-switch:hover {
+  color: var(--paper);
 }
 .header-cta {
   min-height: 44px;
@@ -531,10 +525,6 @@ p {
   background: var(--paper);
   color: var(--ink);
 }
-.sheet-sand {
-  background: var(--sand);
-  color: var(--ink);
-}
 .sheet-orange {
   background: var(--orange);
   color: var(--ink);
@@ -549,6 +539,56 @@ p {
 }
 .contact-form {
   --focus-ring: var(--orange);
+}
+
+/* Loader (first visit per session) and in-page navigation curtain — see site-transitions.ts */
+.site-loader,
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+.site-loader {
+  display: none;
+}
+html.is-loading .site-loader {
+  display: grid;
+}
+html.is-loading body {
+  overflow: hidden;
+}
+.site-loader-logo {
+  width: clamp(160px, 22vw, 300px);
+}
+.site-loader-logo svg > * {
+  visibility: hidden;
+}
+.page-curtain {
+  /* Position is owned by GSAP (yPercent); a CSS transform here would be added on top. */
+  visibility: hidden;
+}
+.page-curtain-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+}
+.page-curtain-label {
+  display: block;
+  font: 800 clamp(3rem, 10vw, 9rem) / 0.9 var(--display);
+  font-variation-settings: "wdth" 92;
+  letter-spacing: -0.035em;
+}
+.page-curtain-logo {
+  width: clamp(88px, 8vw, 120px);
+}
+[tabindex="-1"]:focus {
+  outline: none;
 }
 
 /* Footer */
@@ -578,7 +618,7 @@ p {
   align-content: start;
   gap: 0;
 }
-.footer-col .eyebrow {
+.footer-col .label {
   margin-bottom: 0.5rem;
   color: var(--orange);
 }
@@ -612,24 +652,27 @@ p {
   padding-top: 1.25rem;
   border-top: 1px solid var(--line-inverse);
   color: var(--text-inverse-muted);
-  font: 400 0.75rem var(--mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 /* Work page (/trabajos) */
 .work-hero {
   padding: calc(var(--header-h) + clamp(3rem, 8vw, 8rem)) var(--gutter)
-    clamp(4rem, 8vw, 8rem);
+    calc(clamp(4rem, 8vw, 8rem) + var(--radius-sheet));
   background: var(--orange);
 }
 .work-hero h1 {
   margin: 0 0 clamp(1.5rem, 4vw, 3rem);
   font-size: var(--fs-mega);
-  line-height: 0.82;
+  line-height: 0.84;
+  letter-spacing: -0.035em;
 }
-.work-hero h1 em {
+/* Paper on orange is 2.99:1, so the accent carries an ink outline to stay legible. */
+.work-hero h1 em,
+.project-next em {
   color: var(--paper);
+  -webkit-text-stroke: 2px var(--ink);
+  paint-order: stroke fill;
 }
 .work-hero-bottom {
   display: flex;
@@ -642,115 +685,143 @@ p {
   font-size: var(--fs-lead);
   line-height: 1.45;
 }
-.work-hero-bottom a {
-  gap: 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-weight: 700;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 0.4rem;
-  white-space: nowrap;
+.work-hero-bottom .text-link:hover {
+  color: inherit;
 }
 .project-grid {
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3rem, 6vw, 5rem) clamp(1rem, 2.5vw, 2.5rem);
   margin-top: calc(var(--radius-sheet) * -1);
+  padding: clamp(4rem, 8vw, 8rem) var(--gutter)
+    calc(clamp(4rem, 8vw, 8rem) + var(--radius-sheet));
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
   background: var(--paper);
-  padding: clamp(4rem, 8vw, 8rem) var(--gutter);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 6vw, 6rem) clamp(1rem, 3vw, 3rem);
 }
 .project {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
   margin: 0;
 }
 .project-large {
   grid-column: 1 / -1;
 }
-.project-image {
+.project-media {
+  margin: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.project-media img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: var(--radius-card);
+  transition: transform 0.9s var(--ease-out);
 }
-.project-large .project-image {
-  aspect-ratio: 16 / 8;
+.project-large .project-media img {
+  aspect-ratio: 16 / 7;
 }
-.project h2 {
-  margin: 1.25rem 0 0.5rem;
+.project:hover .project-media img {
+  transform: scale(1.04);
+}
+.project-info {
+  display: grid;
+  justify-items: start;
+  gap: 0.6rem;
+}
+.project-category {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.project h3 {
   font-size: var(--fs-h2);
 }
 .project p {
   max-width: 40ch;
   color: var(--text-muted);
+  font-size: var(--fs-lead);
+  line-height: 1.4;
 }
-.project-video {
-  position: relative;
-  color: var(--paper);
+.project-next {
+  align-content: space-between;
+  justify-items: start;
+  min-height: clamp(22rem, 36vw, 34rem);
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  border-radius: var(--radius-card);
+  background: var(--orange);
+  color: var(--ink);
+  text-decoration: none;
 }
-.project-video div {
-  position: absolute;
-  inset: auto 1.25rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  font: 500 var(--fs-eyebrow) var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.project-next strong {
+  font: 800 clamp(3rem, 7vw, 7.5rem) / 0.86 var(--display);
+  letter-spacing: -0.035em;
 }
 .work-end {
   position: relative;
+  display: grid;
+  justify-items: start;
+  gap: clamp(2rem, 4vw, 3rem);
   margin-top: calc(var(--radius-sheet) * -1);
-  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
-  background: var(--orange);
   padding: clamp(4rem, 8vw, 8rem) var(--gutter)
     calc(clamp(4rem, 8vw, 8rem) + var(--radius-sheet));
-  display: grid;
-  gap: 2rem;
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  background: var(--orange);
 }
-.work-end a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2em;
-  font: 800 var(--fs-display) / 0.9 var(--display);
-  letter-spacing: -0.03em;
-  text-decoration: none;
-  transition: color var(--dur-fast) ease;
-}
-.work-end a .icon {
-  width: 0.55em;
-  height: 0.55em;
-}
-.work-end a:hover {
-  color: var(--paper);
+.work-end h2 {
+  font-size: var(--fs-display);
+  line-height: 0.88;
 }
 
+/* 404 */
+.not-found {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  min-height: 100svh;
+  padding: calc(var(--header-h) + 2rem) var(--gutter)
+    calc(4rem + var(--radius-sheet));
+  background: var(--orange);
+}
+.not-found-code {
+  font: 800 clamp(6rem, 22vw, 20rem) / 0.8 var(--display);
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+}
+.not-found h1 {
+  font-size: var(--fs-display);
+}
+.not-found h1 em {
+  color: var(--paper);
+  -webkit-text-stroke: 2px var(--ink);
+  paint-order: stroke fill;
+}
+.not-found-text {
+  max-width: 40ch;
+  font-size: var(--fs-lead);
+}
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.not-found .btn-outline {
+  --btn-border: var(--ink);
+}
+
+/* Tablet and below: the nav pill no longer fits, so the menu button takes over. */
 @media (max-width: 1080px) {
-  .site-nav {
+  .site-nav,
+  .site-header .header-cta {
     display: none;
   }
   .header-actions {
     margin-left: auto;
-  }
-}
-
-@media (max-width: 800px) {
-  :root {
-    --header-h: 68px;
-    --fs-mega: clamp(3.9rem, 18vw, 6rem);
-  }
-  body {
-    font-size: 1rem;
-  }
-  .brand-logo-link {
-    width: 88px;
-  }
-  .site-header {
-    gap: 0.6rem;
-  }
-  .site-header .header-cta {
-    display: none;
   }
   .menu-toggle {
     display: inline-flex;
@@ -785,16 +856,32 @@ p {
     gap: 1rem;
     padding: 1rem 0;
     border-bottom: 1px solid var(--line-inverse);
-    font: 800 clamp(2.4rem, 12vw, 3.6rem) / 1 var(--display);
+    font: 800 clamp(2.4rem, 12vw, 4.5rem) / 1 var(--display);
     letter-spacing: -0.025em;
     text-decoration: none;
   }
   .mobile-menu a small {
-    font: 500 0.75rem var(--mono);
+    font: 600 0.85rem var(--sans);
     color: var(--orange);
   }
   .mobile-menu a[aria-current="page"] {
     color: var(--orange);
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --header-h: 68px;
+    --fs-mega: clamp(3.9rem, 18vw, 6rem);
+  }
+  body {
+    font-size: 1rem;
+  }
+  .brand-logo-link {
+    width: 88px;
+  }
+  .site-header {
+    gap: 0.6rem;
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -807,19 +894,17 @@ p {
   }
   .work-hero-bottom {
     display: grid;
+    justify-items: start;
   }
   .project-grid {
     grid-template-columns: 1fr;
   }
-  .project-large .project-image {
+  .project-large .project-media img {
     aspect-ratio: 4 / 3;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {

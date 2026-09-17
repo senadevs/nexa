@@ -5,7 +5,7 @@ import { site, type Lang } from '../i18n/site';
 
 interface Props {
   lang: Lang;
-  current?: 'home' | 'work';
+  current?: 'home' | 'work' | 'other';
 }
 
 const { lang, current = 'home' } = Astro.props;
@@ -17,26 +17,25 @@ const prefix = current === 'home' ? '' : t.home;
   <div class="footer-grid">
     <p class="footer-tagline">{t.footer.tagline}</p>
     <nav class="footer-col" aria-label={t.footer.nav}>
-      <p class="eyebrow">{t.footer.navTitle}</p>
+      <p class="label">{t.footer.navTitle}</p>
       <a href={`${prefix}#${t.anchors.clients}`}>{t.nav.clients}</a>
       <a href={`${prefix}#${t.anchors.services}`}>{t.nav.services}</a>
       <a href={t.workPage}>{t.nav.work}</a>
       <a href={`${prefix}#${t.anchors.contact}`}>{t.nav.contact}</a>
     </nav>
     <div class="footer-col">
-      <p class="eyebrow">{t.footer.contactTitle}</p>
+      <p class="label">{t.footer.contactTitle}</p>
       <a href="mailto:hola@nexa.agency">hola@nexa.agency</a>
       <span>{t.footer.base}</span>
     </div>
     <div class="footer-col">
-      <p class="eyebrow">{t.footer.social}</p>
+      <p class="label">{t.footer.social}</p>
       <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram<Icon name="arrow-up-right" /></a>
     </div>
   </div>
   <a class="footer-wordmark" href={t.home} aria-label={t.header.homeLabel}><NexaLogo /></a>
   <div class="footer-bottom">
     <span>{t.footer.rights}</span>
-    <span>{t.footer.base}</span>
     <a href="#top">{t.footer.backTop}<Icon name="arrow-up" /></a>
   </div>
 </footer>

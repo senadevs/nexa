@@ -10,17 +10,16 @@ interface Props {
   variant?: 'primary' | 'dark' | 'ghost' | 'outline';
   size?: 'md' | 'lg';
   icon?: IconName;
-  magnetic?: boolean;
   class?: string;
   [attribute: `data-${string}`]: string | undefined;
 }
 
-const { label, href, as = href ? 'a' : 'button', type = 'button', variant = 'primary', size = 'md', icon, magnetic = false, class: className, ...rest } = Astro.props;
+const { label, href, as = href ? 'a' : 'button', type = 'button', variant = 'primary', size = 'md', icon, class: className, ...rest } = Astro.props;
 const Tag = as;
 const classes = ['btn', `btn-${variant}`, size === 'lg' && 'btn-lg', className];
 ---
 
-<Tag class:list={classes} href={as === 'a' ? href : undefined} type={as === 'button' ? type : undefined} data-magnetic={magnetic ? '' : undefined} {...rest}>
+<Tag class:list={classes} href={as === 'a' ? href : undefined} type={as === 'button' ? type : undefined} {...rest}>
   <span class="btn-label">
     <span class="btn-text">{label}</span>
     <span class="btn-text" aria-hidden="true">{label}</span>

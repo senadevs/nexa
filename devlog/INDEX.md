@@ -23,3 +23,6 @@
 | 019 | 2026-09-17 | Rotador del hero y dev-standards fuera de git   | fix     | 018      | —            |
 | 020 | 2026-09-17 | Auditoría de botones y bento puzzle de clientes | feature | 019      | —            |
 | 021 | 2026-09-17 | Hero con presentación de imágenes sincronizada  | feature | 019      | —            |
+| 022 | 2026-09-17 | Loader con logo y navegación con cortina        | feature | 021      | —            |
+| 023 | 2026-09-17 | Pulido general y auditoría                      | fix     | 022      | —            |
+| 024 | 2026-09-17 | Escena 3D encuadrada y sin cursor redondo       | fix     | 023      | —            |

@@ -1,0 +1,37 @@
+---
+import NexaLogo from './NexaLogo.astro';
+import { site, type Lang } from '../i18n/site';
+
+interface Props {
+  lang: Lang;
+  current?: 'home' | 'work';
+  /** `dark` starts with light text over a dark hero until the page scrolls. */
+  surface?: 'dark' | 'light' | 'orange';
+}
+
+const { lang, current = 'home', surface = 'light' } = Astro.props;
+const t = site[lang];
+const prefix = current === 'home' ? '' : t.home;
+const switchHref = current === 'work' ? `${t.header.switchHref.replace(/\/$/, '')}/trabajos${lang === 'es' ? '/' : ''}` : t.header.switchHref;
+const links = [
+  { href: `${prefix}#${t.anchors.clients}`, label: t.nav.clients },
+  { href: `${prefix}#${t.anchors.services}`, label: t.nav.services },
+  { href: t.workPage, label: t.nav.work, current: current === 'work' },
+  { href: `${prefix}#${t.anchors.contact}`, label: t.nav.contact },
+];
+---
+
+<header class="site-header" data-surface={surface}>
+  <a class="brand-logo-link" href={t.home} aria-label={t.header.homeLabel}><NexaLogo class="brand-logo" /></a>
+  <nav class="site-nav" aria-label={t.header.mainNav}>
+    {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+  </nav>
+  <div class="header-actions">
+    <a class="language-switch" href={switchHref} lang={t.header.switchLang} onclick={`localStorage.setItem('nexa-language', '${t.header.switchLang}')`}>{t.header.switchLabel}</a>
+    <a class="btn btn-primary header-cta" href={`${prefix}#${t.anchors.contact}`}>{t.header.cta}<span class="btn-icon" aria-hidden="true">↗</span></a>
+  </div>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-label={t.header.openMenu}><span></span></button>
+  <nav class="mobile-menu" aria-label={t.header.mobileNav}>
+    {links.map((link, index) => <a href={link.href} aria-current={link.current ? 'page' : undefined}><small>0{index + 1}</small>{link.label}</a>)}
+  </nav>
+</header>

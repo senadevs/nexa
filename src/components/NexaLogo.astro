@@ -1,0 +1,23 @@
+---
+import rawLogo from '../../public/nexa-logo.svg?raw';
+
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const { class: className = '', label } = Astro.props;
+
+// Inline the official logo so the wordmark inherits `currentColor` and can sit on dark or light surfaces.
+const svg = rawLogo
+  .replace(/<\?xml[^>]*\?>/, '')
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/<defs>[\s\S]*?<\/defs>/, '')
+  .replace(/class="st0"/g, 'class="logo-accent"')
+  .replace(/<svg[^>]*viewBox="([^"]+)"[^>]*>/, (_match, viewBox) => {
+    const a11y = label ? `role="img" aria-label="${label}"` : 'aria-hidden="true" focusable="false"';
+    return `<svg class="nexa-logo ${className}" viewBox="${viewBox}" fill="currentColor" ${a11y}>`;
+  });
+---
+
+<Fragment set:html={svg} />

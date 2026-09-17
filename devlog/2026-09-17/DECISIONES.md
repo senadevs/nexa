@@ -26,3 +26,4 @@
 - **Hero oculto desde el primer pintado (025):** las entradas de página parten de un estado preparado por CSS (`intro-pending`) en vez de `gsap.from` sobre contenido ya visible.
 - **Red de seguridad cancelable (025):** los temporizadores de emergencia inline los cancela el propio script al arrancar; nunca compiten con la animación real.
 - **Primera tanda visual versionada (026):** se generan Marea, Norte y Orbita como `v2`, manteniendo los originales recuperables mientras se valida la dirección editorial; los servicios se posponen por petición del usuario.
+- **Conceptos fuera de Nexa (027):** Signal Garden y Open Circuit viven en `assets/source/standalone/` y no se conectan a las páginas actuales hasta que se confirme el sitio de destino.

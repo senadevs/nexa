@@ -93,6 +93,16 @@ for (const [slug, file] of Object.entries(heroSources)) {
   await portrait.webp(webp).toFile(hero(`${slug}-portrait-820.webp`));
 }
 
+// Standalone concepts for a separate site/placement. They are intentionally not
+// wired into Nexa pages yet, but remain available as optimized WebP assets.
+const standalone = out("standalone");
+for (const slug of ["signal-garden", "open-circuit"]) {
+  await sharp(src(`standalone/${slug}`))
+    .resize({ width: 1600, height: 1067, fit: "cover" })
+    .webp(webp)
+    .toFile(standalone(`${slug}-1600.webp`));
+}
+
 // Social preview: 1200×630 JPG.
 await sharp(src("marea-case"))
   .resize({ width: 1200, height: 630, fit: "cover", position: "attention" })

@@ -142,3 +142,12 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Depende de: X-T14
 - Devlog: devlog/2026-09-17/026-serie-visual-proyectos.md
 - Notas: el usuario pidió limitar la primera tanda a tres imágenes; los seis visuales de servicios quedan fuera de esta iteración para validación posterior.
+
+### X-T16 · Dos conceptos independientes para otro sitio [S] [done]
+
+- Skill: image-gen §Flujo obligatorio + §Render 3D
+- Archivos: assets/source/standalone/_, public/images/standalone/_, scripts/optimize-images.mjs
+- Hecho cuando: existen dos ideas visuales nuevas, no variantes de portfolio, usando la paleta Nexa y sin conectarlas a las páginas actuales.
+- Verificar: node scripts/optimize-images.mjs; npm run check; npm run lint; npm run build.
+- Depende de: X-T15
+- Devlog: devlog/2026-09-17/027-conceptos-standalone.md

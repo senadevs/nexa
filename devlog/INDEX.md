@@ -28,3 +28,4 @@
 | 024 | 2026-09-17 | Escena 3D encuadrada y sin cursor redondo       | fix     | 023      | —            |
 | 025 | 2026-09-17 | Salida del loader limpia y continua             | fix     | 022      | —            |
 | 026 | 2026-09-17 | Serie visual de proyectos Nexa                  | feature | 012      | X-T15        |
+| 027 | 2026-09-17 | Conceptos independientes para otro sitio        | feature | —        | X-T16        |

@@ -1,0 +1,29 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  label: string;
+  href?: string;
+  /** `span` renders a visual button inside another link (e.g. a clickable card). */
+  as?: 'a' | 'button' | 'span';
+  type?: 'button' | 'submit';
+  variant?: 'primary' | 'dark' | 'ghost' | 'outline';
+  size?: 'md' | 'lg';
+  icon?: IconName;
+  magnetic?: boolean;
+  class?: string;
+  [attribute: `data-${string}`]: string | undefined;
+}
+
+const { label, href, as = href ? 'a' : 'button', type = 'button', variant = 'primary', size = 'md', icon, magnetic = false, class: className, ...rest } = Astro.props;
+const Tag = as;
+const classes = ['btn', `btn-${variant}`, size === 'lg' && 'btn-lg', className];
+---
+
+<Tag class:list={classes} href={as === 'a' ? href : undefined} type={as === 'button' ? type : undefined} data-magnetic={magnetic ? '' : undefined} {...rest}>
+  <span class="btn-label">
+    <span class="btn-text">{label}</span>
+    <span class="btn-text" aria-hidden="true">{label}</span>
+  </span>
+  {icon && <span class="btn-icon"><Icon name={icon} /></span>}
+</Tag>

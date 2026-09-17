@@ -12,3 +12,7 @@
 - **Hero sin vídeo (018):** el titular gigante es el protagonista; cualquier vídeo o imagen detrás reduce la legibilidad.
 - **Sin eyebrows de sección (018):** la división la hacen las láminas de color y los títulos display; las etiquetas mono numeradas sobraban y daban aspecto de plantilla.
 - **dev-standards fuera de git (019):** `.claude/`, `CLAUDE.md`, `.mcp.json`, `.dev-standards.json` y `plan/brief.md` se ignoran; cada máquina los genera con `init-project.ps1`/`sync.ps1`. El devlog y el design system sí se versionan.
+- **Button como componente (020):** un único `Button.astro` garantiza tamaños, estados e iconos coherentes; los textos de CTA viven en `site.ts` y no se repiten dentro de una sección.
+- **Bento de clientes con posiciones explícitas (020):** en vez de `grid-auto-flow: dense`, cada pieza se coloca por breakpoint para que el puzzle encaje sin huecos en 12, 6 y 2 columnas.
+- **Imágenes del hero en card, no de fondo (021):** se cumple la petición de imágenes que pasan sin perder la legibilidad del titular; el titular se limita por fórmula para no invadir la card.
+- **Pausa obligatoria (021):** cualquier contenido que se mueva solo más de 5 s lleva control de pausa (WCAG 2.2.2).

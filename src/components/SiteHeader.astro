@@ -1,5 +1,6 @@
 ---
 import NexaLogo from './NexaLogo.astro';
+import Button from './Button.astro';
 import { site, type Lang } from '../i18n/site';
 
 interface Props {
@@ -27,8 +28,8 @@ const links = [
     {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
   </nav>
   <div class="header-actions">
-    <a class="language-switch" href={switchHref} lang={t.header.switchLang} onclick={`localStorage.setItem('nexa-language', '${t.header.switchLang}')`}>{t.header.switchLabel}</a>
-    <a class="btn btn-primary header-cta" href={`${prefix}#${t.anchors.contact}`}>{t.header.cta}<span class="btn-icon" aria-hidden="true">↗</span></a>
+    <a class="language-switch" href={switchHref} lang={t.header.switchLang} aria-label={t.header.switchAria} onclick={`localStorage.setItem('nexa-language', '${t.header.switchLang}')`}>{t.header.switchLabel}</a>
+    <Button label={t.header.cta} href={`${prefix}#${t.anchors.contact}`} class="header-cta" icon="arrow-up-right" />
   </div>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-label={t.header.openMenu}><span></span></button>
   <nav class="mobile-menu" aria-label={t.header.mobileNav}>

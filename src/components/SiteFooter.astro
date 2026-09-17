@@ -1,5 +1,6 @@
 ---
 import NexaLogo from './NexaLogo.astro';
+import Icon from './Icon.astro';
 import { site, type Lang } from '../i18n/site';
 
 interface Props {
@@ -29,13 +30,13 @@ const prefix = current === 'home' ? '' : t.home;
     </div>
     <div class="footer-col">
       <p class="eyebrow">{t.footer.social}</p>
-      <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram ↗</a>
+      <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram<Icon name="arrow-up-right" /></a>
     </div>
   </div>
   <a class="footer-wordmark" href={t.home} aria-label={t.header.homeLabel}><NexaLogo /></a>
   <div class="footer-bottom">
     <span>{t.footer.rights}</span>
     <span>{t.footer.base}</span>
-    <a href="#top">{t.footer.backTop} ↑</a>
+    <a href="#top">{t.footer.backTop}<Icon name="arrow-up" /></a>
   </div>
 </footer>

@@ -20,6 +20,7 @@ export interface SiteCopy {
     openMenu: string;
     cta: string;
     switchLabel: string;
+    switchAria: string;
     switchHref: string;
     switchLang: Lang;
   };
@@ -38,10 +39,13 @@ export interface SiteCopy {
 export interface HomeCopy {
   hero: {
     lineOne: string;
-    words: string[];
+    /** Each slide pairs the rotating word with a showcase image and its caption. */
+    slides: { word: string; image: string; caption: string; detail: string }[];
     lead: string;
     primary: string;
     secondary: string;
+    pause: string;
+    play: string;
   };
   marquee: string[];
   manifesto: {
@@ -55,9 +59,10 @@ export interface HomeCopy {
     title: string;
     titleAccent: string;
     aside: string;
-    cta: string;
     items: {
       title: string;
+      cta: string;
+      service: string;
       text: string;
       tags: string[];
       image: string;
@@ -101,6 +106,8 @@ export interface HomeCopy {
       submit: string;
       note: string;
       sent: string;
+      required: string;
+      invalidEmail: string;
       subject: string;
     };
   };
@@ -130,6 +137,7 @@ export const site: Record<Lang, SiteCopy> = {
       openMenu: "Abrir menú",
       cta: "Hablemos",
       switchLabel: "EN",
+      switchAria: "English version",
       switchHref: "/en/",
       switchLang: "en",
     },
@@ -168,6 +176,7 @@ export const site: Record<Lang, SiteCopy> = {
       openMenu: "Open menu",
       cta: "Start a project",
       switchLabel: "ES",
+      switchAria: "Versión en español",
       switchHref: "/",
       switchLang: "es",
     },
@@ -189,10 +198,37 @@ export const homeCopy: Record<Lang, HomeCopy> = {
   es: {
     hero: {
       lineOne: "Ideas que",
-      words: ["mueven.", "venden.", "conectan."],
+      slides: [
+        {
+          word: "mueven.",
+          image: "marea",
+          caption: "Marea",
+          detail: "Branding + Digital",
+        },
+        {
+          word: "venden.",
+          image: "paid",
+          caption: "Paid media",
+          detail: "Campañas que convierten",
+        },
+        {
+          word: "conectan.",
+          image: "orbita",
+          caption: "Orbita",
+          detail: "Campaña & paid media",
+        },
+        {
+          word: "crecen.",
+          image: "web",
+          caption: "Diseño web",
+          detail: "Webs rápidas y memorables",
+        },
+      ],
       lead: "Estrategia, creatividad y medios bajo un mismo equipo para que tu marca no solo esté: deje huella.",
       primary: "Empieza tu proyecto",
       secondary: "Ver trabajo",
+      pause: "Pausar presentación",
+      play: "Reanudar presentación",
     },
     marquee: [
       "Branding",
@@ -221,7 +257,6 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       title: "Servicios que",
       titleAccent: "mueven marcas.",
       aside: "Un equipo pequeño. Una mirada grande.",
-      cta: "Hablemos de tu proyecto",
       items: [
         {
           title: "Diseño gráfico",
@@ -230,6 +265,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/graphic-v2.png",
           alt: "Dirección visual y composición editorial",
           tone: "orange",
+          cta: "Pide propuesta de diseño",
+          service: "Diseño gráfico",
         },
         {
           title: "Branding",
@@ -238,6 +275,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/branding-v2.png",
           alt: "Materiales de identidad visual y branding",
           tone: "sand",
+          cta: "Pide propuesta de branding",
+          service: "Branding",
         },
         {
           title: "Estrategia & creatividad",
@@ -246,6 +285,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/strategy-v2.png",
           alt: "Dirección creativa para una experiencia digital",
           tone: "graphite",
+          cta: "Pide propuesta de estrategia",
+          service: "Estrategia y creatividad digital",
         },
         {
           title: "Paid media",
@@ -254,6 +295,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/paid-media-v2.png",
           alt: "Planificación visual de una campaña",
           tone: "paper",
+          cta: "Pide tu plan de medios",
+          service: "Paid media",
         },
         {
           title: "Diseño web",
@@ -262,6 +305,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/web-v2.png",
           alt: "Dirección de una experiencia web digital",
           tone: "orange",
+          cta: "Pide propuesta web",
+          service: "Diseño web",
         },
         {
           title: "Audiovisual",
@@ -270,6 +315,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/audiovisual.png",
           alt: "Dirección de arte para producción audiovisual",
           tone: "graphite",
+          cta: "Pide propuesta audiovisual",
+          service: "Producción audiovisual",
         },
       ],
     },
@@ -362,6 +409,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         service: "Qué necesitas",
         servicePlaceholder: "Selecciona un servicio",
         services: [
+          "Diseño gráfico",
           "Branding",
           "Diseño web",
           "Estrategia y creatividad digital",
@@ -372,6 +420,9 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         message: "Háblanos del proyecto",
         submit: "Enviar proyecto",
         note: "Al enviar se abrirá tu cliente de correo con el mensaje preparado.",
+        required: "Este campo es obligatorio.",
+        invalidEmail:
+          "Revisa el email: debe tener el formato nombre@dominio.com.",
         sent: "Tu cliente de correo debería abrirse ahora. Gracias por escribirnos.",
         subject: "Nuevo proyecto",
       },
@@ -380,10 +431,37 @@ export const homeCopy: Record<Lang, HomeCopy> = {
   en: {
     hero: {
       lineOne: "Ideas that",
-      words: ["move.", "sell.", "connect."],
+      slides: [
+        {
+          word: "move.",
+          image: "marea",
+          caption: "Marea",
+          detail: "Branding + Digital",
+        },
+        {
+          word: "sell.",
+          image: "paid",
+          caption: "Paid media",
+          detail: "Campaigns that convert",
+        },
+        {
+          word: "connect.",
+          image: "orbita",
+          caption: "Orbita",
+          detail: "Campaign & paid media",
+        },
+        {
+          word: "grow.",
+          image: "web",
+          caption: "Web design",
+          detail: "Fast, memorable websites",
+        },
+      ],
       lead: "Strategy, creativity and media under one team, so your brand does more than show up: it leaves a mark.",
       primary: "Start your project",
       secondary: "See our work",
+      pause: "Pause slideshow",
+      play: "Play slideshow",
     },
     marquee: [
       "Branding",
@@ -412,7 +490,6 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       title: "Services that",
       titleAccent: "move brands.",
       aside: "A small team. A big perspective.",
-      cta: "Let’s talk about your project",
       items: [
         {
           title: "Graphic design",
@@ -421,6 +498,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/graphic-v2.png",
           alt: "Editorial graphic design direction",
           tone: "orange",
+          cta: "Request a design proposal",
+          service: "Graphic design",
         },
         {
           title: "Branding",
@@ -429,6 +508,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/branding-v2.png",
           alt: "Brand identity materials",
           tone: "sand",
+          cta: "Request a branding proposal",
+          service: "Branding",
         },
         {
           title: "Strategy & creativity",
@@ -437,6 +518,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/strategy-v2.png",
           alt: "Digital creative direction",
           tone: "graphite",
+          cta: "Request a strategy proposal",
+          service: "Digital strategy & creativity",
         },
         {
           title: "Paid media",
@@ -445,6 +528,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/paid-media-v2.png",
           alt: "Visual campaign planning",
           tone: "paper",
+          cta: "Request a media plan",
+          service: "Paid media",
         },
         {
           title: "Web design",
@@ -453,6 +538,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/web-v2.png",
           alt: "Digital web experience",
           tone: "orange",
+          cta: "Request a web proposal",
+          service: "Web design",
         },
         {
           title: "Film & motion",
@@ -461,6 +548,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           image: "/images/audiovisual.png",
           alt: "Art direction for audiovisual production",
           tone: "graphite",
+          cta: "Request a film proposal",
+          service: "Film production",
         },
       ],
     },
@@ -553,6 +642,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         service: "What you need",
         servicePlaceholder: "Choose a service",
         services: [
+          "Graphic design",
           "Branding",
           "Web design",
           "Digital strategy & creativity",
@@ -563,6 +653,8 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         message: "Tell us about the project",
         submit: "Send project",
         note: "Sending opens your email client with the message ready.",
+        required: "This field is required.",
+        invalidEmail: "Check the email: it should look like name@domain.com.",
         sent: "Your email client should open now. Thanks for reaching out.",
         subject: "New project",
       },

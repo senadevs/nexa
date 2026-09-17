@@ -8,53 +8,6 @@ const reduceMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
 
-// Hero word rotator: letters of the outgoing word rise out of the line mask while the
-// next word rises in from below. Hidden letters are reset instantly (never animated back
-// through the visible line), so a word never travels top to bottom.
-const startRotator = () => {
-  const words = [...document.querySelectorAll<HTMLElement>(".rotator-word")];
-  if (words.length < 2) return;
-  const letters = words.map(
-    (word) =>
-      SplitText.create(word, {
-        type: "chars",
-        charsClass: "rotator-char",
-        aria: "none",
-      }).chars,
-  );
-  gsap.set(words, { visibility: "visible" });
-  letters.forEach((chars, index) =>
-    gsap.set(chars, { yPercent: index === 0 ? 0 : 110 }),
-  );
-  let index = 0;
-  const cycle = () => {
-    if (document.hidden) return gsap.delayedCall(1, cycle);
-    const current = index;
-    index = (index + 1) % words.length;
-    gsap
-      .timeline({ onComplete: () => void gsap.delayedCall(2.2, cycle) })
-      .to(letters[current], {
-        yPercent: -60,
-        autoAlpha: 0,
-        duration: 0.35,
-        ease: "power2.in",
-        stagger: 0.018,
-      })
-      .set(letters[current], { yPercent: 110, autoAlpha: 1 })
-      .fromTo(
-        letters[index],
-        { yPercent: 110 },
-        { yPercent: 0, duration: 0.75, ease: "expo.out", stagger: 0.03 },
-        0.3,
-      )
-      .add(() => {
-        words[current].classList.remove("is-active");
-        words[index].classList.add("is-active");
-      }, 0.3);
-  };
-  gsap.delayedCall(2.6, cycle);
-};
-
 const countUp = (element: HTMLElement) => {
   const target = Number(element.dataset.count ?? 0);
   const state = { value: 0 };
@@ -70,8 +23,6 @@ const countUp = (element: HTMLElement) => {
 
 if (!reduceMotion) {
   document.fonts.ready.then(() => {
-    startRotator();
-
     // Hero intro: giant lines rise from their mask.
     gsap.from(".hero-title .line-inner", {
       yPercent: 105,
@@ -80,7 +31,7 @@ if (!reduceMotion) {
       stagger: 0.12,
       delay: 0.1,
     });
-    gsap.from(".hero-bottom", {
+    gsap.from([".hero-slides", ".hero-slide-meta", ".hero-bottom"], {
       autoAlpha: 0,
       y: 24,
       duration: 0.9,
@@ -192,13 +143,15 @@ if (!reduceMotion) {
         });
       });
 
-    gsap.from(".client-logo span", {
+    // Client puzzle: tiles pop in one after another, then their names settle.
+    gsap.from(".client-tile", {
       autoAlpha: 0,
-      y: 30,
-      duration: 0.7,
+      scale: 0.9,
+      y: 40,
+      duration: 0.8,
       ease: "power3.out",
-      stagger: { each: 0.06, grid: "auto" },
-      scrollTrigger: { trigger: ".client-wall", start: "top 85%", once: true },
+      stagger: 0.08,
+      scrollTrigger: { trigger: ".client-bento", start: "top 80%", once: true },
     });
 
     const media = gsap.matchMedia();
@@ -209,16 +162,22 @@ if (!reduceMotion) {
       cards.forEach((card, index) => {
         const next = cards[index + 1];
         if (!next) return;
+        // Only transform + opacity on scroll: the card scales and a dark overlay fades in.
+        const trigger = {
+          trigger: next,
+          start: "top bottom",
+          end: "top top+=120",
+          scrub: true,
+        };
+        gsap.to(card.querySelector(".service-dim"), {
+          opacity: 0.35,
+          ease: "none",
+          scrollTrigger: trigger,
+        });
         gsap.to(card.querySelector(".service-card-inner"), {
           scale: 0.92,
-          filter: "brightness(0.72)",
           ease: "none",
-          scrollTrigger: {
-            trigger: next,
-            start: "top bottom",
-            end: "top top+=120",
-            scrub: true,
-          },
+          scrollTrigger: trigger,
         });
       });
     });
@@ -277,6 +236,36 @@ if (!reduceMotion) {
     });
 
     media.add("(hover: hover) and (pointer: fine)", () => {
+      // Magnetic buttons: pulled towards the pointer, elastic return on leave.
+      const magnets = [
+        ...document.querySelectorAll<HTMLElement>("[data-magnetic]"),
+      ];
+      const cleanups = magnets.map((button) => {
+        const pull = (event: PointerEvent) => {
+          const rect = button.getBoundingClientRect();
+          gsap.to(button, {
+            x: (event.clientX - rect.left - rect.width / 2) * 0.3,
+            y: (event.clientY - rect.top - rect.height / 2) * 0.3,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        };
+        const release = () =>
+          gsap.to(button, {
+            x: 0,
+            y: 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.35)",
+          });
+        button.addEventListener("pointermove", pull);
+        button.addEventListener("pointerleave", release);
+        return () => {
+          button.removeEventListener("pointermove", pull);
+          button.removeEventListener("pointerleave", release);
+          gsap.set(button, { clearProps: "transform" });
+        };
+      });
+
       const follower = document.querySelector<HTMLElement>(".cursor-follower");
       const label = follower?.querySelector("span");
       if (!follower || !label) return;
@@ -308,6 +297,7 @@ if (!reduceMotion) {
         target.addEventListener("focus", leave);
       });
       return () => {
+        cleanups.forEach((cleanup) => cleanup());
         window.removeEventListener("pointermove", move);
         targets.forEach((target) => {
           target.removeEventListener("pointerenter", enter);

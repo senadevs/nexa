@@ -23,3 +23,6 @@
 - **Redirección de idioma conservada (023):** se mantiene la decisión del 014 pero sin afectar a bots, antes del pintado y sin romper el menú si falla el almacenamiento.
 - **Sin cursor personalizado (024):** el cliente lo vio feo; la pista de card clicable es el círculo con flecha de los botones, coherente con la marca y sin tapar contenido.
 - **Encuadre 3D calculado (024):** la cámara se ajusta al aspecto del lienzo en vez de una distancia fija.
+- **Hero oculto desde el primer pintado (025):** las entradas de página parten de un estado preparado por CSS (`intro-pending`) en vez de `gsap.from` sobre contenido ya visible.
+- **Red de seguridad cancelable (025):** los temporizadores de emergencia inline los cancela el propio script al arrancar; nunca compiten con la animación real.
+- **Primera tanda visual versionada (026):** se generan Marea, Norte y Orbita como `v2`, manteniendo los originales recuperables mientras se valida la dirección editorial; los servicios se posponen por petición del usuario.

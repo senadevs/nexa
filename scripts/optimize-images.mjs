@@ -45,6 +45,21 @@ for (const slug of ["marea", "norte", "orbita", "studio"]) {
   }
 }
 
+// New portfolio variants: keep the original published set intact while validating
+// the refreshed Nexa art direction in parallel.
+for (const [slug, file] of [
+  ["marea-v2", "marea-case-v2"],
+  ["norte-v2", "norte-case-v2"],
+  ["orbita-v2", "orbita-case-v2"],
+]) {
+  for (const width of [800, 1400]) {
+    await sharp(src(file))
+      .resize({ width, height: Math.round((width * 3) / 4), fit: "cover" })
+      .webp(webp)
+      .toFile(work(`${slug}-${width}.webp`));
+  }
+}
+
 // Hero slideshow: 16:10 at 720 / 1280 (mobile) and 4:5 portrait at 820 (desktop card).
 const hero = out("hero");
 const heroSources = {
@@ -52,6 +67,8 @@ const heroSources = {
   paid: "paid-media-v2",
   orbita: "orbita-case",
   web: "web-v2",
+  "marea-v2": "marea-case-v2",
+  "orbita-v2": "orbita-case-v2",
 };
 // Hand-picked portrait crops where the automatic focus misses the subject.
 const portraitCrops = {

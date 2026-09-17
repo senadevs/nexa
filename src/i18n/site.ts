@@ -204,7 +204,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       slides: [
         {
           word: "mueven.",
-          image: "marea",
+          image: "marea-v2",
           caption: "Marea",
           detail: "Branding + Digital",
         },
@@ -216,7 +216,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         },
         {
           word: "conectan.",
-          image: "orbita",
+          image: "orbita-v2",
           caption: "Orbita",
           detail: "Campaña & paid media",
         },
@@ -334,21 +334,21 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           name: "Marea",
           category: "Branding + Digital",
           result: "Una identidad con pulso para cambiar de ritmo.",
-          image: "marea",
+          image: "marea-v2",
           alt: "Dirección de arte para el proyecto Marea",
         },
         {
           name: "Norte",
           category: "Identidad & estrategia",
           result: "Una nueva forma de mirar lo cotidiano.",
-          image: "norte",
+          image: "norte-v2",
           alt: "Proyecto de identidad Norte",
         },
         {
           name: "Orbita",
           category: "Campaña & paid media",
           result: "Una campaña que puso la conversación en movimiento.",
-          image: "orbita",
+          image: "orbita-v2",
           alt: "Proyecto de campaña Orbita",
         },
         {
@@ -435,7 +435,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       slides: [
         {
           word: "move.",
-          image: "marea",
+          image: "marea-v2",
           caption: "Marea",
           detail: "Branding + Digital",
         },
@@ -447,7 +447,7 @@ export const homeCopy: Record<Lang, HomeCopy> = {
         },
         {
           word: "connect.",
-          image: "orbita",
+          image: "orbita-v2",
           caption: "Orbita",
           detail: "Campaign & paid media",
         },
@@ -565,21 +565,21 @@ export const homeCopy: Record<Lang, HomeCopy> = {
           name: "Marea",
           category: "Branding + Digital",
           result: "An identity with a pulse, made to change pace.",
-          image: "marea",
+          image: "marea-v2",
           alt: "Marea art direction case study",
         },
         {
           name: "Norte",
           category: "Identity & strategy",
           result: "A new way of looking at everyday life.",
-          image: "norte",
+          image: "norte-v2",
           alt: "Norte identity project",
         },
         {
           name: "Orbita",
           category: "Campaign & paid media",
           result: "A campaign that set the conversation in motion.",
-          image: "orbita",
+          image: "orbita-v2",
           alt: "Orbita campaign project",
         },
         {

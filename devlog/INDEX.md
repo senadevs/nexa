@@ -26,3 +26,5 @@
 | 022 | 2026-09-17 | Loader con logo y navegación con cortina        | feature | 021      | —            |
 | 023 | 2026-09-17 | Pulido general y auditoría                      | fix     | 022      | —            |
 | 024 | 2026-09-17 | Escena 3D encuadrada y sin cursor redondo       | fix     | 023      | —            |
+| 025 | 2026-09-17 | Salida del loader limpia y continua             | fix     | 022      | —            |
+| 026 | 2026-09-17 | Serie visual de proyectos Nexa                  | feature | 012      | X-T15        |

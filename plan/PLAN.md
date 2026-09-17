@@ -132,3 +132,13 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: npm run check; npm run lint; npm run build; revisión visual y apertura del menú en `/en/` y `/en/trabajos/`.
 - Depende de: X-T13
 - Devlog: devlog/2026-09-14/015-nav-responsive.md
+
+### X-T15 · Serie visual coherente para proyectos y servicios [M] [done]
+
+- Skill: image-gen §Flujo obligatorio + §Render 3D
+- Archivos: assets/source/_, public/images/{hero,services,work}/_, design-system/nexa/prompts.md, scripts/optimize-images.mjs
+- Hecho cuando: la primera tanda de tres proyectos (Marea, Norte y Orbita) cuenta con una familia visual propia, coherente con la paleta oficial de Nexa y preparada en los tamaños reales de cada sección; el hero reutiliza recortes optimizados de la misma serie.
+- Verificar: node scripts/optimize-images.mjs; npm run check; npm run lint; npm run build; revisión visual en `/` y `/trabajos/`.
+- Depende de: X-T14
+- Devlog: devlog/2026-09-17/026-serie-visual-proyectos.md
+- Notas: el usuario pidió limitar la primera tanda a tres imágenes; los seis visuales de servicios quedan fuera de esta iteración para validación posterior.

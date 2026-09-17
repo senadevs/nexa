@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/three": "latest",
+    "playwright": "^1.63.0",
     "prettier": "latest"
   }
 }

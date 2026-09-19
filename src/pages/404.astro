@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Button from '../components/Button.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Página no encontrada — Nexa" description="La página que buscas no existe o ha cambiado de dirección.">
+  <SiteHeader lang="es" current="other" surface="orange" />
+  <main class="not-found" id="main">
+    <p class="not-found-code" aria-hidden="true">404</p>
+    <h1>Esta página <em>no existe.</em></h1>
+    <p class="not-found-text">Puede que el enlace haya cambiado. <span lang="en">This page doesn’t exist or has moved.</span></p>
+    <div class="not-found-actions">
+      <Button label="Volver al inicio" href="/" variant="dark" size="lg" icon="arrow-up-right" />
+      <Button label="English home" href="/en/" variant="outline" size="lg" />
+    </div>
+  </main>
+  <SiteFooter lang="es" current="other" />
+</BaseLayout>

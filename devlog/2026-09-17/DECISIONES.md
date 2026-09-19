@@ -1,0 +1,29 @@
+# Decisiones — 2026-09-17
+
+- **dev-standards instalado (016):** stack `astro` con bundles `motion-web`, `web-design-meta` y `design-extras`, igual que escombrocero pero sin `sinapsis-brand`, porque la marca es Nexa.
+- **Perfil de front genérico:** el perfil generado indica "Astro + React islands + Tailwind", pero Nexa usa Astro con CSS propio, GSAP y Three.js. No se introducen React ni Tailwind; el movimiento sigue con GSAP ScrollTrigger y el 3D con Three.js.
+- **Devlog global:** se conserva la numeración correlativa del proyecto (016) en lugar de la `001` que crea el instalador.
+- **Tipografía display (017):** se añade Bricolage Grotesque para titulares gigantes (variable, eje `wdth`); Manrope y DM Mono se mantienen. La skill pide aprobación para fuentes nuevas: el usuario pidió cambiar el diseño del texto, queda anotado para confirmarlo.
+- **Láminas en vez de separadores (017):** las secciones se dividen por cambio de color con esquinas redondeadas superpuestas, no por líneas finas; da ritmo de agencia sin añadir ornamentos.
+- **Servicios sticky, no pin (017):** las cards apiladas usan `position: sticky` nativo para no hacer scroll-jacking en servicios (anti-patrón del patrón `agency`); el pin horizontal se reserva para casos y solo en ≥1025px.
+- **Contenido en un solo módulo (017):** `src/i18n/site.ts` evita que ES y EN diverjan (antes EN tenía menos servicios y otro formulario).
+- **Sin dark mode (017):** la marca alterna láminas claras y oscuras de forma fija; un tema oscuro automático rompería la paleta oficial.
+- **Cifras descriptivas (017):** el manifiesto usa cifras derivadas de la oferta (6 disciplinas, 360°, 1 interlocutor), no métricas de resultados; pendientes de validar con Nexa.
+- **Hero sin vídeo (018):** el titular gigante es el protagonista; cualquier vídeo o imagen detrás reduce la legibilidad.
+- **Sin eyebrows de sección (018):** la división la hacen las láminas de color y los títulos display; las etiquetas mono numeradas sobraban y daban aspecto de plantilla.
+- **dev-standards fuera de git (019):** `.claude/`, `CLAUDE.md`, `.mcp.json`, `.dev-standards.json` y `plan/brief.md` se ignoran; cada máquina los genera con `init-project.ps1`/`sync.ps1`. El devlog y el design system sí se versionan.
+- **Button como componente (020):** un único `Button.astro` garantiza tamaños, estados e iconos coherentes; los textos de CTA viven en `site.ts` y no se repiten dentro de una sección.
+- **Bento de clientes con posiciones explícitas (020):** en vez de `grid-auto-flow: dense`, cada pieza se coloca por breakpoint para que el puzzle encaje sin huecos en 12, 6 y 2 columnas.
+- **Imágenes del hero en card, no de fondo (021):** se cumple la petición de imágenes que pasan sin perder la legibilidad del titular; el titular se limita por fórmula para no invadir la card.
+- **Pausa obligatoria (021):** cualquier contenido que se mueva solo más de 5 s lleva control de pausa (WCAG 2.2.2).
+- **Cortina en vez de smooth scroll (022):** navegar por anclas no enseña el scroll; la cortina oculta el salto instantáneo. Lenis queda descartado por ahora (no se pidió suavizar la rueda y añade dependencia).
+- **Loader por sesión (022):** `sessionStorage`, saltable y con tope de 1,6 s de espera, siguiendo `performance-a11y` de gsap-scrolltrigger.
+- **Sin botones magnéticos (023):** el cliente los percibe como confusos; los CTA solo elevan 2px y ruedan el texto.
+- **Originales fuera de public (023):** `assets/source/` guarda los PNG; lo publicado son WebP generados por script.
+- **Redirección de idioma conservada (023):** se mantiene la decisión del 014 pero sin afectar a bots, antes del pintado y sin romper el menú si falla el almacenamiento.
+- **Sin cursor personalizado (024):** el cliente lo vio feo; la pista de card clicable es el círculo con flecha de los botones, coherente con la marca y sin tapar contenido.
+- **Encuadre 3D calculado (024):** la cámara se ajusta al aspecto del lienzo en vez de una distancia fija.
+- **Hero oculto desde el primer pintado (025):** las entradas de página parten de un estado preparado por CSS (`intro-pending`) en vez de `gsap.from` sobre contenido ya visible.
+- **Red de seguridad cancelable (025):** los temporizadores de emergencia inline los cancela el propio script al arrancar; nunca compiten con la animación real.
+- **Primera tanda visual versionada (026):** se generan Marea, Norte y Orbita como `v2`, manteniendo los originales recuperables mientras se valida la dirección editorial; los servicios se posponen por petición del usuario.
+- **Conceptos fuera de Nexa (027):** Signal Garden y Open Circuit viven en `assets/source/standalone/` y no se conectan a las páginas actuales hasta que se confirme el sitio de destino.

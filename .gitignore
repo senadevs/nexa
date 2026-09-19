@@ -19,3 +19,13 @@ coverage/
 .idea/
 .DS_Store
 Thumbs.db
+
+# UI verification screenshots
+.ui-verify/
+
+# dev-standards (herramientas locales del agente: skills, hooks, reglas)
+.claude/
+CLAUDE.md
+.mcp.json
+.dev-standards.json
+plan/brief.md

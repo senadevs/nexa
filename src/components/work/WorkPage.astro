@@ -1,0 +1,92 @@
+---
+import SiteHeader from '../SiteHeader.astro';
+import SiteFooter from '../SiteFooter.astro';
+import Button from '../Button.astro';
+import Icon from '../Icon.astro';
+import { homeCopy, site, workPageCopy, type Lang } from '../../i18n/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = workPageCopy[lang];
+const work = homeCopy[lang].work;
+const s = site[lang];
+const contactHref = `${s.home}#${s.anchors.contact}`;
+---
+
+<SiteHeader lang={lang} current="work" surface="orange" />
+
+<main class="work-page" id="main">
+  <section class="work-hero" aria-labelledby="work-page-title">
+    <h1 id="work-page-title" data-reveal-title>{t.heading} <em>{t.headingAccent}</em></h1>
+    <div class="work-hero-bottom">
+      <p>{t.intro}</p>
+      <a class="text-link" href="#proyectos">{t.explore}<Icon name="arrow-down" /></a>
+    </div>
+  </section>
+
+  <section class="project-grid" id="proyectos" data-label={t.projectsLabel} aria-labelledby="projects-title">
+    <h2 class="sr-only" id="projects-title">{t.projectsLabel}</h2>
+    {
+      work.items.map((item, index) => (
+        <article class:list={['project', { 'project-large': index === 0 }]} data-reveal-card>
+          <figure class="project-media">
+            <img
+              src={`/images/work/${item.image}-1400.webp`}
+              srcset={`/images/work/${item.image}-800.webp 800w, /images/work/${item.image}-1400.webp 1400w`}
+              sizes={index === 0 ? '(min-width: 801px) 92vw, 100vw' : '(min-width: 801px) 46vw, 100vw'}
+              alt={item.alt}
+              width="1400"
+              height="1050"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </figure>
+          <div class="project-info">
+            <span class="project-category">{item.category}</span>
+            <h3>{item.name}</h3>
+            <p>{item.result}</p>
+          </div>
+        </article>
+      ))
+    }
+    <a class="project project-next" href={contactHref} data-reveal-card>
+      <strong>{work.next.title}<br /><em>{work.next.accent}</em></strong>
+      <Button label={work.next.cta} as="span" variant="dark" size="lg" icon="arrow-up-right" />
+    </a>
+  </section>
+
+  <section class="work-end" aria-labelledby="work-end-title">
+    <h2 id="work-end-title" data-reveal-title>{t.endTitle}</h2>
+    <Button label={t.endCta} href={contactHref} variant="dark" size="lg" icon="arrow-up-right" />
+  </section>
+</main>
+
+<SiteFooter lang={lang} current="work" />
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { SplitText } from 'gsap/SplitText';
+  import { whenSiteReady } from '../../scripts/site-transitions';
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    whenSiteReady().then(() => {
+      document.querySelectorAll<HTMLElement>('[data-reveal-title]').forEach((title) => {
+        SplitText.create(title, {
+          type: 'lines',
+          mask: 'lines',
+          autoSplit: true,
+          onSplit: (split) => gsap.from(split.lines, { yPercent: 110, duration: 1, ease: 'power4.out', stagger: 0.1, scrollTrigger: { trigger: title, start: 'top 90%', once: true } }),
+        });
+      });
+      gsap.utils.toArray<HTMLElement>('[data-reveal-card]').forEach((card) => {
+        gsap.from(card, { autoAlpha: 0, y: 60, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 88%', once: true } });
+      });
+    });
+  }
+</script>

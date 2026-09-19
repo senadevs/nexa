@@ -49,6 +49,8 @@
 }
 html {
   -webkit-text-size-adjust: 100%;
+  /* Reserve the scrollbar lane so locking/unlocking scroll (loader, menu) never shifts the page sideways. */
+  scrollbar-gutter: stable;
 }
 body {
   margin: 0;
@@ -560,8 +562,24 @@ p {
 html.is-loading .site-loader {
   display: grid;
 }
-html.is-loading body {
+html.is-loading {
   overflow: hidden;
+}
+/* Hero starts in its pre-entrance state; home-motion.ts removes the class and animates in. */
+html.intro-pending .hero-title .line-inner {
+  transform: translateY(105%);
+}
+html.intro-pending .hero-slides,
+html.intro-pending .hero-slide-meta,
+html.intro-pending .hero-bottom {
+  opacity: 0;
+}
+.site-loader {
+  /* Curved bottom edge while the panel lifts (animated by site-transitions.ts). */
+  --curve: 0px;
+  border-bottom-left-radius: 50% var(--curve);
+  border-bottom-right-radius: 50% var(--curve);
+  will-change: transform;
 }
 .site-loader-logo {
   width: clamp(160px, 22vw, 300px);

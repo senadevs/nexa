@@ -24,22 +24,23 @@ const countUp = (element: HTMLElement) => {
 
 if (!reduceMotion) {
   whenSiteReady().then(() => {
-    // Hero intro: giant lines rise from their mask.
-    gsap.from(".hero-title .line-inner", {
-      yPercent: 105,
-      duration: 1.1,
-      ease: "power4.out",
-      stagger: 0.12,
-      delay: 0.1,
-    });
-    gsap.from([".hero-slides", ".hero-slide-meta", ".hero-bottom"], {
-      autoAlpha: 0,
-      y: 24,
-      duration: 0.9,
-      ease: "power3.out",
-      stagger: 0.1,
-      delay: 0.45,
-    });
+    // Hero intro: the hero has been hidden by html.intro-pending since first paint. Drop the class
+    // and set the start state in the same task (no frame is painted in between), then animate in.
+    // Removing it first also keeps GSAP from reading the CSS translate as an extra offset.
+    document.documentElement.classList.remove("intro-pending");
+    gsap
+      .timeline()
+      .fromTo(
+        ".hero-title .line-inner",
+        { yPercent: 105 },
+        { yPercent: 0, duration: 1.2, ease: "power4.out", stagger: 0.12 },
+      )
+      .fromTo(
+        [".hero-slides", ".hero-slide-meta", ".hero-bottom"],
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.1 },
+        0.25,
+      );
 
     // Hero glow drifts while the next section covers the hero.
     gsap.to(".hero-glow", {

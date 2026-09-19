@@ -18,8 +18,16 @@ gsap.registerPlugin(ScrollTrigger);
  * leave, so page intros play in view instead of under the loader.
  */
 
+declare global {
+  interface Window {
+    __nexaSafety?: number;
+  }
+}
+
 const INTRO_KEY = "nexa-intro";
 const root = document.documentElement;
+// The site script is alive: cancel the inline safety net so it can never cut the loader short.
+window.clearTimeout(window.__nexaSafety);
 const reduceMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
@@ -40,7 +48,15 @@ const pageLoaded = () =>
 
 const runLoader = () => {
   const loader = document.querySelector<HTMLElement>(".site-loader");
+  // Pages without a hero entrance have nothing waiting on intro-pending; on the home page the
+  // entrance script removes it, and this fallback reveals the hero if that script never ran.
+  whenSiteReady().then(() => {
+    if (!document.querySelector(".hero"))
+      root.classList.remove("intro-pending");
+    else window.setTimeout(() => root.classList.remove("intro-pending"), 2500);
+  });
   if (!root.classList.contains("is-loading") || !loader) {
+    loader?.remove();
     resolveReady();
     return;
   }
@@ -81,27 +97,36 @@ const runLoader = () => {
     } catch {
       /* private mode: the loader simply shows again next visit */
     }
+    // One continuous move: the logo rises out, then the panel lifts with a curved bottom edge
+    // and the page entrance starts while the panel is uncovering it.
     gsap
       .timeline({
-        onComplete: () => {
-          root.classList.remove("is-loading");
-          loader.remove();
-        },
+        defaults: { overwrite: true },
+        onComplete: () => loader.remove(),
       })
       .to(parts, {
         yPercent: -110,
         autoAlpha: 0,
-        duration: 0.4,
+        duration: 0.5,
         ease: "power3.in",
-        stagger: 0.02,
+        stagger: 0.012,
       })
+      .add(() => {
+        // Keep the panel on screen after the class goes; unlocking scroll causes no shift (scrollbar-gutter).
+        gsap.set(loader, { display: "grid" });
+        root.classList.remove("is-loading");
+      }, 0.28)
       .to(
         loader,
-        { yPercent: -100, duration: 0.8, ease: "power4.inOut" },
-        "-=0.15",
+        {
+          yPercent: -100,
+          "--curve": `${Math.round(window.innerHeight * 0.18)}px`,
+          duration: 1,
+          ease: "power4.inOut",
+        },
+        0.28,
       )
-      // Page intros start while the panel is still lifting.
-      .add(resolveReady, "-=0.45");
+      .add(resolveReady, 0.55);
   };
 
   Promise.race([ready, skipped]).then(leave);

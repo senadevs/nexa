@@ -81,12 +81,16 @@ const englishUrl = Astro.site ? new URL(englishPath, Astro.site).toString() : ne
     })} />
     <title>{title}</title>
     <script is:inline>
-      // First visit of the session: show the logo loader before first paint (see site-transitions.ts).
+      // Before first paint (see site-transitions.ts):
+      // - intro-pending keeps the hero hidden until its entrance plays, so it is never shown and then re-hidden.
+      // - is-loading shows the logo loader on the first visit of the session.
       try {
-        if (!sessionStorage.getItem('nexa-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          document.documentElement.classList.add('is-loading');
-          // Safety net: never trap the page if the module fails to load.
-          setTimeout(() => document.documentElement.classList.remove('is-loading'), 4000);
+        const root = document.documentElement;
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          root.classList.add('intro-pending');
+          if (!sessionStorage.getItem('nexa-intro')) root.classList.add('is-loading');
+          // Safety net only for when the site script never runs: the script cancels it as soon as it starts.
+          window.__nexaSafety = setTimeout(() => root.classList.remove('is-loading', 'intro-pending'), 8000);
         }
       } catch {}
     </script>

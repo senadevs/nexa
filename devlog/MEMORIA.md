@@ -34,6 +34,7 @@ sin React ni Tailwind pese a lo que diga el perfil generado. Dominio: `https://t
 - D-023 · Contenido del PDF del cliente aplicado íntegro y traducido al inglés · ver 028
 - D-024 · Sin sección 3D: fuera `scroll-scene.ts` y las dependencias de Three.js · ver 028
 - D-025 · Las opciones del formulario coinciden exactamente con las 7 categorías de servicios · ver 028
+- D-026 · El tamaño del titular del hero se mide en el navegador (`--hero-fit`), no se calcula por fórmula · ver 029
 
 ## Reglas del cliente
 

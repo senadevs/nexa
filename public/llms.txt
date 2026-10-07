@@ -1,24 +1,25 @@
-# Nexa Digital Agency
+# The Nexa Agency
 
-> Nexa is a digital marketing agency based in Madrid, Spain. We create strategy, identity and digital experiences for ambitious brands.
+> The Nexa Agency is a digital marketing agency based in Santo Domingo, Dominican Republic. We connect strategy, creativity and delivery in one team to move brands forward.
 
 ## Website
 
-- Spanish home: https://nexa-agencia.pages.dev/
-- English home: https://nexa-agencia.pages.dev/en/
-- Spanish work: https://nexa-agencia.pages.dev/trabajos/
-- English work: https://nexa-agencia.pages.dev/en/trabajos/
+- Spanish home: https://thenexaagency.com/
+- English home: https://thenexaagency.com/en/
+- Spanish projects: https://thenexaagency.com/trabajos/
+- English projects: https://thenexaagency.com/en/trabajos/
 
 ## Services
 
+- Strategy & Marketing
+- Branding & Identity
+- Social Media & Content
 - Graphic design
-- Branding and visual identity
-- Digital strategy and creativity
-- Paid media
-- Web design and development
 - Film production
+- Campaigns & Paid Media
+- Web design & Digital
 
 ## Contact
 
-- Email: hola@nexa.agency
-- Location: Madrid, Spain
+- Email: info@thenexaagency.com
+- Location: Santo Domingo, Dominican Republic

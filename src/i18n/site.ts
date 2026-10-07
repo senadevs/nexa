@@ -6,13 +6,13 @@ export interface SiteCopy {
   home: string;
   workPage: string;
   anchors: {
+    about: string;
     clients: string;
     services: string;
     work: string;
-    process: string;
     contact: string;
   };
-  nav: { clients: string; services: string; work: string; contact: string };
+  nav: { about: string; services: string; work: string; contact: string };
   header: {
     homeLabel: string;
     mainNav: string;
@@ -40,9 +40,15 @@ export interface SiteCopy {
 export interface HomeCopy {
   hero: {
     lineOne: string;
-    /** Each slide pairs the rotating word with a showcase image and its caption. */
-    slides: { word: string; image: string; caption: string; detail: string }[];
-    lead: string;
+    /** Each slide pairs the rotating word with its discipline, lead copy and showcase image. */
+    slides: {
+      word: string;
+      image: string;
+      caption: string;
+      detail: string;
+      lead: string;
+      alt: string;
+    }[];
     primary: string;
     secondary: string;
     pause: string;
@@ -66,9 +72,9 @@ export interface HomeCopy {
       service: string;
       text: string;
       tags: string[];
-      /** Slug of public/images/services/<slug>-{800,1200}.webp */
-      image: string;
-      alt: string;
+      /** Slug of public/images/services/<slug>-{800,1200}.webp; omit for a colour-only card. */
+      image?: string;
+      alt?: string;
       tone: Tone;
     }[];
   };
@@ -85,11 +91,7 @@ export interface HomeCopy {
       image: string;
       alt: string;
     }[];
-    next: { title: string; accent: string; cta: string };
-  };
-  process: {
-    label: string;
-    steps: { title: string; accent: string; text: string }[];
+    next: { title: string; accent: string; text: string; cta: string };
   };
   contact: {
     title: string;
@@ -119,20 +121,20 @@ export const site: Record<Lang, SiteCopy> = {
     home: "/",
     workPage: "/trabajos/",
     anchors: {
+      about: "nosotros",
       clients: "clientes",
       services: "servicios",
       work: "trabajo",
-      process: "proceso",
       contact: "contacto",
     },
     nav: {
-      clients: "Clientes",
+      about: "Nosotros",
       services: "Servicios",
-      work: "Trabajo",
+      work: "Proyectos",
       contact: "Contacto",
     },
     header: {
-      homeLabel: "Nexa Digital Agency, inicio",
+      homeLabel: "The Nexa Agency, inicio",
       mainNav: "Navegación principal",
       mobileNav: "Navegación móvil",
       openMenu: "Abrir menú",
@@ -145,13 +147,13 @@ export const site: Record<Lang, SiteCopy> = {
     },
     footer: {
       tagline:
-        "Marketing con intención. Estrategia, identidad y movimiento para marcas que quieren avanzar.",
+        "Conectamos estrategia, creatividad y ejecución para mover marcas hacia adelante.",
       nav: "Navegación del pie",
       navTitle: "Explora",
       contactTitle: "Contacto",
       social: "Síguenos",
-      base: "Madrid / España",
-      rights: "© Nexa 2026",
+      base: "Santo Domingo, República Dominicana",
+      rights: "© 2026 The Nexa Agency. Todos los derechos reservados.",
       backTop: "Volver arriba",
     },
   },
@@ -159,20 +161,20 @@ export const site: Record<Lang, SiteCopy> = {
     home: "/en/",
     workPage: "/en/trabajos/",
     anchors: {
+      about: "about",
       clients: "clients",
       services: "services",
       work: "work",
-      process: "process",
       contact: "contact",
     },
     nav: {
-      clients: "Clients",
+      about: "About",
       services: "Services",
-      work: "Work",
+      work: "Projects",
       contact: "Contact",
     },
     header: {
-      homeLabel: "Nexa Digital Agency, home",
+      homeLabel: "The Nexa Agency, home",
       mainNav: "Main navigation",
       mobileNav: "Mobile navigation",
       openMenu: "Open menu",
@@ -185,13 +187,13 @@ export const site: Record<Lang, SiteCopy> = {
     },
     footer: {
       tagline:
-        "Marketing with intention. Strategy, identity and movement for brands ready to move forward.",
+        "We connect strategy, creativity and delivery to move brands forward.",
       nav: "Footer navigation",
       navTitle: "Explore",
       contactTitle: "Contact",
       social: "Follow us",
-      base: "Madrid / Spain",
-      rights: "© Nexa 2026",
+      base: "Santo Domingo, Dominican Republic",
+      rights: "© 2026 The Nexa Agency. All rights reserved.",
       backTop: "Back to top",
     },
   },
@@ -204,122 +206,171 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       slides: [
         {
           word: "mueven.",
-          image: "marea-v2",
-          caption: "Marea",
-          detail: "Branding + Digital",
+          image: "strategy",
+          caption: "Estrategia + Marketing",
+          detail: "Dirección para cada acción",
+          lead: "Convertimos objetivos de negocio en estrategias claras para hacer avanzar tu marca.",
+          alt: "Dirección creativa para una estrategia de marca",
         },
         {
-          word: "venden.",
-          image: "paid",
-          caption: "Paid media",
-          detail: "Campañas que convierten",
+          word: "identifican.",
+          image: "branding",
+          caption: "Branding + Identidad visual",
+          detail: "Marcas reconocibles",
+          lead: "Creamos identidades con personalidad, coherencia y una imagen capaz de diferenciar tu marca.",
+          alt: "Materiales de identidad visual y branding",
         },
         {
           word: "conectan.",
           image: "orbita-v2",
-          caption: "Orbita",
-          detail: "Campaña & paid media",
+          caption: "Social Media",
+          detail: "Comunidad en movimiento",
+          lead: "Gestionamos tus redes con estrategia, creatividad y una comunicación pensada para construir comunidad.",
+          alt: "Composición en órbita que representa la conversación social",
+        },
+        {
+          word: "cuentan.",
+          image: "studio",
+          caption: "Creación de contenido",
+          detail: "Historias que conectan",
+          lead: "Transformamos lo que tu marca tiene para decir en contenido relevante, creativo y hecho para conectar.",
+          alt: "Set de producción de contenido",
+        },
+        {
+          word: "cobran vida.",
+          image: "audiovisual",
+          caption: "Producción audiovisual",
+          detail: "Foto y vídeo de marca",
+          lead: "Creamos fotografía y vídeo que muestran tu marca, tus productos y tus historias de forma memorable.",
+          alt: "Dirección de arte para producción audiovisual",
+        },
+        {
+          word: "venden.",
+          image: "paid",
+          caption: "Campañas + Paid Media",
+          detail: "Atención en oportunidades",
+          lead: "Creamos y gestionamos campañas que llevan tu mensaje a las personas correctas y generan oportunidades.",
+          alt: "Planificación visual de una campaña de medios",
+        },
+        {
+          word: "se ven.",
+          image: "graphic",
+          caption: "Diseño gráfico + Publicidad",
+          detail: "Coherencia en cada pieza",
+          lead: "Diseñamos piezas digitales, impresas y publicitarias para que tu marca sea coherente en cada punto de contacto.",
+          alt: "Dirección visual y composición editorial",
         },
         {
           word: "crecen.",
           image: "web",
-          caption: "Diseño web",
-          detail: "Webs rápidas y memorables",
+          caption: "Diseño web + Digital",
+          detail: "Presencia que convierte",
+          lead: "Creamos experiencias digitales funcionales y atractivas que fortalecen la presencia de tu negocio.",
+          alt: "Dirección de una experiencia web digital",
         },
       ],
-      lead: "Estrategia, creatividad y medios bajo un mismo equipo para que tu marca no solo esté: deje huella.",
       primary: "Empieza tu proyecto",
-      secondary: "Ver trabajo",
+      secondary: "Ver proyectos",
       pause: "Pausar presentación",
       play: "Reanudar presentación",
     },
     marquee: [
-      "Branding",
       "Estrategia",
+      "Branding",
+      "Social Media",
       "Contenido",
       "Paid media",
       "Diseño web",
-      "Audiovisual",
     ],
     manifesto: {
-      text: "Lo que importa no es estar. Es dejar huella. Entendemos tu negocio, encontramos la tensión y la convertimos en una idea que hace que la gente pare, mire y recuerde.",
-      highlights: ["huella.", "recuerde."],
+      text: "Lo que importa no es estar. Es dejar huella. Entendemos tu negocio, definimos una estrategia y la transformamos en identidad, contenido y experiencias que conectan con tu audiencia y hacen crecer tu marca.",
+      highlights: ["huella.", "marca."],
       link: "Conoce cómo trabajamos",
       stats: [
-        { value: 6, suffix: "", label: "Disciplinas bajo un mismo equipo" },
-        { value: 360, suffix: "°", label: "De la estrategia a los medios" },
-        { value: 1, suffix: "", label: "Interlocutor de principio a fin" },
+        { value: 6, suffix: "", label: "Disciplinas conectadas" },
+        { value: 360, suffix: "°", label: "Una visión integral" },
+        { value: 1, suffix: "", label: "Un solo equipo" },
       ],
     },
     clients: {
       title: "Marcas que",
       titleAccent: "confían.",
-      aside: "Cada proyecto es una conversación distinta.",
+      aside:
+        "Cada marca empieza con una conversación. Cada proyecto, con una idea.",
     },
     services: {
       title: "Servicios que",
       titleAccent: "mueven marcas.",
-      aside: "Un equipo pequeño. Una mirada grande.",
+      aside:
+        "Estrategia, creatividad y ejecución conectadas en un mismo equipo.",
       items: [
         {
-          title: "Diseño gráfico",
-          text: "Convertimos ideas complejas en sistemas visuales claros, reconocibles y llenos de intención.",
-          tags: ["Editorial", "Key visuals", "Packaging", "Social"],
-          image: "graphic",
-          alt: "Dirección visual y composición editorial",
+          title: "Estrategia & Marketing",
+          text: "Entendemos tu negocio, tu audiencia y tus objetivos para construir estrategias que le den dirección a cada acción de tu marca.",
+          tags: ["Estrategia", "Marketing", "Campañas", "Consultoría"],
+          image: "strategy",
+          alt: "Dirección creativa para una estrategia de marca",
           tone: "orange",
-          cta: "Pide propuesta de diseño",
-          service: "Diseño gráfico",
+          cta: "Hablemos de estrategia",
+          service: "Estrategia & Marketing",
         },
         {
-          title: "Branding",
-          text: "Definimos la voz, el lenguaje y la presencia que hacen que una marca se reconozca antes de ser nombrada.",
-          tags: ["Naming", "Identidad", "Voz y tono", "Brandbook"],
+          title: "Branding & Identidad",
+          text: "Construimos marcas con personalidad, propósito y una identidad visual coherente para que sean reconocibles, relevantes y memorables.",
+          tags: ["Naming", "Identidad visual", "Branding", "Manual de marca"],
           image: "branding",
           alt: "Materiales de identidad visual y branding",
           tone: "sand",
-          cta: "Pide propuesta de branding",
-          service: "Branding",
+          cta: "Construyamos tu marca",
+          service: "Branding & Identidad",
         },
         {
-          title: "Estrategia & creatividad",
-          text: "Encontramos la idea que conecta el objetivo de negocio con una conversación cultural relevante.",
-          tags: ["Insights", "Concepto", "Campañas", "Contenido"],
-          image: "strategy",
-          alt: "Dirección creativa para una experiencia digital",
+          title: "Social Media & Contenido",
+          text: "Convertimos la estrategia de tu marca en contenido que conecta, comunica y construye comunidad en cada plataforma.",
+          tags: ["Estrategia", "Contenido", "Community", "Social Media"],
           tone: "graphite",
-          cta: "Pide propuesta de estrategia",
-          service: "Estrategia y creatividad digital",
+          cta: "Impulsa tus redes",
+          service: "Social Media & Contenido",
         },
         {
-          title: "Paid media",
-          text: "Planificamos, lanzamos y optimizamos campañas para que la inversión se convierta en aprendizaje y crecimiento.",
-          tags: ["Meta Ads", "Google Ads", "TikTok Ads", "Analítica"],
-          image: "paid-media",
-          alt: "Planificación visual de una campaña",
+          title: "Diseño gráfico",
+          text: "Transformamos ideas en soluciones visuales claras, atractivas y coherentes con la identidad de tu marca.",
+          tags: ["Digital", "Impresos", "Publicidad", "Editorial"],
+          image: "graphic",
+          alt: "Dirección visual y composición editorial",
           tone: "paper",
-          cta: "Pide tu plan de medios",
-          service: "Paid media",
+          cta: "Dale forma a tu idea",
+          service: "Diseño gráfico",
         },
         {
-          title: "Diseño web",
-          text: "Diseñamos webs rápidas, memorables y preparadas para convertir visitas en oportunidades.",
-          tags: ["UX / UI", "Desarrollo", "SEO", "Conversión"],
-          image: "web",
-          alt: "Dirección de una experiencia web digital",
-          tone: "orange",
-          cta: "Pide propuesta web",
-          service: "Diseño web",
-        },
-        {
-          title: "Audiovisual",
-          text: "Del concepto al montaje final: damos movimiento a la historia que tu marca necesita contar.",
-          tags: ["Guion", "Rodaje", "Motion", "Postproducción"],
+          title: "Producción audiovisual",
+          text: "Llevamos tus ideas a foto y vídeo para crear historias, contenido y experiencias que hagan que tu marca cobre vida.",
+          tags: ["Vídeo", "Fotografía", "Reels", "Producción"],
           image: "audiovisual",
           alt: "Dirección de arte para producción audiovisual",
           tone: "graphite",
-          cta: "Pide propuesta audiovisual",
+          cta: "Demos vida a tu idea",
           service: "Producción audiovisual",
+        },
+        {
+          title: "Campañas & Paid Media",
+          text: "Planificamos, ejecutamos y optimizamos campañas para llevar tu mensaje a las personas correctas y convertir atención en oportunidades.",
+          tags: ["Meta Ads", "Google Ads", "Campañas", "Optimización"],
+          image: "paid-media",
+          alt: "Planificación visual de una campaña de medios",
+          tone: "orange",
+          cta: "Impulsa tu campaña",
+          service: "Campañas & Paid Media",
+        },
+        {
+          title: "Diseño web & Digital",
+          text: "Diseñamos experiencias digitales funcionales, intuitivas y alineadas con tu marca para convertir visitas en oportunidades.",
+          tags: ["Diseño web", "Landing pages", "Responsive"],
+          image: "web",
+          alt: "Dirección de una experiencia web digital",
+          tone: "sand",
+          cta: "Lleva tu marca a digital",
+          service: "Diseño web & Digital",
         },
       ],
     },
@@ -327,34 +378,38 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       title: "El trabajo",
       titleAccent: "habla.",
       intro:
-        "Identidades, campañas y experiencias digitales construidas para que las marcas ocupen un lugar propio.",
+        "Ideas convertidas en marcas, campañas y experiencias que conectan, comunican y dejan huella.",
       all: "Ver todos los proyectos",
       items: [
         {
           name: "Marea",
-          category: "Branding + Digital",
-          result: "Una identidad con pulso para cambiar de ritmo.",
+          category: "Branding + Identidad",
+          result:
+            "Una identidad creada para destacar, conectar y moverse a su propio ritmo.",
           image: "marea-v2",
           alt: "Dirección de arte para el proyecto Marea",
         },
         {
           name: "Norte",
-          category: "Identidad & estrategia",
-          result: "Una nueva forma de mirar lo cotidiano.",
+          category: "Estrategia + Marketing",
+          result:
+            "Una estrategia pensada para darle dirección a la marca y convertir objetivos en acciones.",
           image: "norte-v2",
-          alt: "Proyecto de identidad Norte",
+          alt: "Proyecto de estrategia Norte",
         },
         {
-          name: "Orbita",
-          category: "Campaña & paid media",
-          result: "Una campaña que puso la conversación en movimiento.",
+          name: "Órbita",
+          category: "Campaña + Paid Media",
+          result:
+            "Una campaña diseñada para poner la marca en el centro de la conversación.",
           image: "orbita-v2",
-          alt: "Proyecto de campaña Orbita",
+          alt: "Proyecto de campaña Órbita",
         },
         {
           name: "Studio",
-          category: "Producción audiovisual",
-          result: "Historias pensadas para verse en movimiento.",
+          category: "Contenido + Producción audiovisual",
+          result:
+            "Historias creadas para captar miradas, generar conexión y quedarse en la memoria.",
           image: "studio",
           alt: "Dirección de arte para producción audiovisual",
         },
@@ -362,69 +417,51 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       next: {
         title: "Tu marca",
         accent: "aquí.",
+        text: "La próxima idea que deje huella puede ser la tuya.",
         cta: "Hablemos",
       },
-    },
-    process: {
-      label: "Cómo trabajamos",
-      steps: [
-        {
-          title: "Una idea",
-          accent: "aparece.",
-          text: "Partimos de una tensión, una pregunta o una oportunidad de negocio.",
-        },
-        {
-          title: "La forma",
-          accent: "cambia.",
-          text: "Probamos, mezclamos y damos estructura a lo que todavía no existe.",
-        },
-        {
-          title: "La marca",
-          accent: "avanza.",
-          text: "Convertimos la idea en una experiencia que se mueve con la gente.",
-        },
-      ],
     },
     contact: {
       title: "¿Tienes algo",
       titleAccent: "en mente?",
       intro:
-        "Cuéntanos qué quieres mover. Te responderemos con una primera mirada, una pregunta y un siguiente paso claro.",
+        "Cuéntanos qué quieres construir, transformar o hacer crecer. Nosotros conectamos los puntos para convertirlo en una idea que avance.",
       channels: [
         {
           label: "Email",
-          value: "hola@nexa.agency",
-          href: "mailto:hola@nexa.agency",
+          value: "info@thenexaagency.com",
+          href: "mailto:info@thenexaagency.com",
         },
         {
           label: "WhatsApp",
           value: "Escríbenos",
-          href: "https://wa.me/34600000000?text=Hola%20Nexa%2C%20quiero%20hablar%20de%20un%20proyecto",
+          href: "https://wa.me/18090000000?text=Hola%20Nexa%2C%20quiero%20hablar%20de%20un%20proyecto",
         },
-        { label: "Base", value: "Madrid / España" },
+        { label: "Base", value: "Santo Domingo, República Dominicana" },
       ],
       form: {
         name: "Tu nombre",
         email: "Tu email",
-        company: "Empresa",
-        service: "Qué necesitas",
+        company: "Empresa / Marca",
+        service: "¿Qué necesitas?",
         servicePlaceholder: "Selecciona un servicio",
         services: [
+          "Estrategia & Marketing",
+          "Branding & Identidad",
+          "Social Media & Contenido",
           "Diseño gráfico",
-          "Branding",
-          "Diseño web",
-          "Estrategia y creatividad digital",
-          "Paid media",
           "Producción audiovisual",
-          "Otro proyecto",
+          "Campañas & Paid Media",
+          "Diseño web & Digital",
+          "Otro / No estoy seguro",
         ],
-        message: "Háblanos del proyecto",
-        submit: "Enviar proyecto",
+        message: "Cuéntanos sobre tu proyecto",
+        submit: "Cuéntanos tu idea",
         note: "Al enviar se abrirá tu cliente de correo con el mensaje preparado.",
+        sent: "Tu idea ya está en movimiento. Hablamos pronto.",
         required: "Este campo es obligatorio.",
         invalidEmail:
           "Revisa el email: debe tener el formato nombre@dominio.com.",
-        sent: "Tu cliente de correo debería abrirse ahora. Gracias por escribirnos.",
         subject: "Nuevo proyecto",
       },
     },
@@ -435,122 +472,170 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       slides: [
         {
           word: "move.",
-          image: "marea-v2",
-          caption: "Marea",
-          detail: "Branding + Digital",
+          image: "strategy",
+          caption: "Strategy + Marketing",
+          detail: "Direction for every move",
+          lead: "We turn business goals into clear strategies that move your brand forward.",
+          alt: "Creative direction for a brand strategy",
         },
         {
-          word: "sell.",
-          image: "paid",
-          caption: "Paid media",
-          detail: "Campaigns that convert",
+          word: "identify.",
+          image: "branding",
+          caption: "Branding + Visual identity",
+          detail: "Brands you recognise",
+          lead: "We create identities with personality, consistency and an image that sets your brand apart.",
+          alt: "Brand identity materials",
         },
         {
           word: "connect.",
           image: "orbita-v2",
-          caption: "Orbita",
-          detail: "Campaign & paid media",
+          caption: "Social Media",
+          detail: "Community in motion",
+          lead: "We run your channels with strategy, creativity and communication built to grow a community.",
+          alt: "Orbiting composition representing social conversation",
+        },
+        {
+          word: "tell.",
+          image: "studio",
+          caption: "Content creation",
+          detail: "Stories that connect",
+          lead: "We turn what your brand has to say into relevant, creative content made to connect.",
+          alt: "Content production set",
+        },
+        {
+          word: "come alive.",
+          image: "audiovisual",
+          caption: "Film production",
+          detail: "Brand photo and video",
+          lead: "We create photography and video that show your brand, your products and your stories in a memorable way.",
+          alt: "Art direction for film production",
+        },
+        {
+          word: "sell.",
+          image: "paid",
+          caption: "Campaigns + Paid Media",
+          detail: "Attention into opportunities",
+          lead: "We create and run campaigns that take your message to the right people and generate opportunities.",
+          alt: "Visual planning of a media campaign",
+        },
+        {
+          word: "get seen.",
+          image: "graphic",
+          caption: "Graphic design + Advertising",
+          detail: "Consistent at every touchpoint",
+          lead: "We design digital, printed and advertising pieces so your brand stays consistent at every touchpoint.",
+          alt: "Editorial graphic design direction",
         },
         {
           word: "grow.",
           image: "web",
-          caption: "Web design",
-          detail: "Fast, memorable websites",
+          caption: "Web design + Digital",
+          detail: "A presence that converts",
+          lead: "We build functional, attractive digital experiences that strengthen your business presence.",
+          alt: "Digital web experience direction",
         },
       ],
-      lead: "Strategy, creativity and media under one team, so your brand does more than show up: it leaves a mark.",
       primary: "Start your project",
-      secondary: "See our work",
+      secondary: "See projects",
       pause: "Pause slideshow",
       play: "Play slideshow",
     },
     marquee: [
-      "Branding",
       "Strategy",
+      "Branding",
+      "Social Media",
       "Content",
       "Paid media",
       "Web design",
-      "Film",
     ],
     manifesto: {
-      text: "Being there is not enough. You have to leave a mark. We get to know your business, find the tension and turn it into an idea that makes people stop, look and remember.",
-      highlights: ["mark.", "remember."],
-      link: "Discover our approach",
+      text: "Being there is not enough. You have to leave a mark. We get to know your business, define a strategy and turn it into identity, content and experiences that connect with your audience and grow your brand.",
+      highlights: ["mark.", "brand."],
+      link: "Discover how we work",
       stats: [
-        { value: 6, suffix: "", label: "Disciplines under one team" },
-        { value: 360, suffix: "°", label: "From strategy to media" },
-        { value: 1, suffix: "", label: "Single point of contact" },
+        { value: 6, suffix: "", label: "Connected disciplines" },
+        { value: 360, suffix: "°", label: "One integrated vision" },
+        { value: 1, suffix: "", label: "One single team" },
       ],
     },
     clients: {
       title: "Brands that",
       titleAccent: "trust us.",
-      aside: "Every project is a different conversation.",
+      aside:
+        "Every brand starts with a conversation. Every project, with an idea.",
     },
     services: {
       title: "Services that",
       titleAccent: "move brands.",
-      aside: "A small team. A big perspective.",
+      aside: "Strategy, creativity and delivery connected in one team.",
       items: [
         {
-          title: "Graphic design",
-          text: "We turn complex ideas into clear, recognisable visual systems full of intention.",
-          tags: ["Editorial", "Key visuals", "Packaging", "Social"],
-          image: "graphic",
-          alt: "Editorial graphic design direction",
+          title: "Strategy & Marketing",
+          text: "We get to know your business, your audience and your goals to build strategies that give direction to everything your brand does.",
+          tags: ["Strategy", "Marketing", "Campaigns", "Consulting"],
+          image: "strategy",
+          alt: "Creative direction for a brand strategy",
           tone: "orange",
-          cta: "Request a design proposal",
-          service: "Graphic design",
+          cta: "Let’s talk strategy",
+          service: "Strategy & Marketing",
         },
         {
-          title: "Branding",
-          text: "We define the voice, language and presence that make a brand recognisable before it is named.",
-          tags: ["Naming", "Identity", "Tone of voice", "Brandbook"],
+          title: "Branding & Identity",
+          text: "We build brands with personality, purpose and a consistent visual identity so they are recognisable, relevant and memorable.",
+          tags: ["Naming", "Visual identity", "Branding", "Brand manual"],
           image: "branding",
           alt: "Brand identity materials",
           tone: "sand",
-          cta: "Request a branding proposal",
-          service: "Branding",
+          cta: "Let’s build your brand",
+          service: "Branding & Identity",
         },
         {
-          title: "Strategy & creativity",
-          text: "We find the idea that connects business goals with a relevant cultural conversation.",
-          tags: ["Insights", "Concept", "Campaigns", "Content"],
-          image: "strategy",
-          alt: "Digital creative direction",
+          title: "Social Media & Content",
+          text: "We turn your brand strategy into content that connects, communicates and builds community on every platform.",
+          tags: ["Strategy", "Content", "Community", "Social Media"],
           tone: "graphite",
-          cta: "Request a strategy proposal",
-          service: "Digital strategy & creativity",
+          cta: "Boost your channels",
+          service: "Social Media & Content",
         },
         {
-          title: "Paid media",
-          text: "We plan, launch and optimise campaigns so investment turns into learning and growth.",
-          tags: ["Meta Ads", "Google Ads", "TikTok Ads", "Analytics"],
-          image: "paid-media",
-          alt: "Visual campaign planning",
+          title: "Graphic design",
+          text: "We turn ideas into clear, attractive visual solutions that stay true to your brand identity.",
+          tags: ["Digital", "Print", "Advertising", "Editorial"],
+          image: "graphic",
+          alt: "Editorial graphic design direction",
           tone: "paper",
-          cta: "Request a media plan",
-          service: "Paid media",
-        },
-        {
-          title: "Web design",
-          text: "Fast, memorable websites built to turn visits into opportunities.",
-          tags: ["UX / UI", "Development", "SEO", "Conversion"],
-          image: "web",
-          alt: "Digital web experience",
-          tone: "orange",
-          cta: "Request a web proposal",
-          service: "Web design",
+          cta: "Shape your idea",
+          service: "Graphic design",
         },
         {
           title: "Film production",
-          text: "From concept to final cut: we give movement to the story your brand needs to tell.",
-          tags: ["Script", "Shooting", "Motion", "Post-production"],
+          text: "We bring your ideas to photo and video to create stories, content and experiences that make your brand come alive.",
+          tags: ["Video", "Photography", "Reels", "Production"],
           image: "audiovisual",
           alt: "Art direction for film production",
           tone: "graphite",
-          cta: "Request a film proposal",
+          cta: "Bring your idea to life",
           service: "Film production",
+        },
+        {
+          title: "Campaigns & Paid Media",
+          text: "We plan, run and optimise campaigns to take your message to the right people and turn attention into opportunities.",
+          tags: ["Meta Ads", "Google Ads", "Campaigns", "Optimisation"],
+          image: "paid-media",
+          alt: "Visual planning of a media campaign",
+          tone: "orange",
+          cta: "Boost your campaign",
+          service: "Campaigns & Paid Media",
+        },
+        {
+          title: "Web design & Digital",
+          text: "We design functional, intuitive digital experiences aligned with your brand to turn visits into opportunities.",
+          tags: ["Web design", "Landing pages", "Responsive"],
+          image: "web",
+          alt: "Digital web experience direction",
+          tone: "sand",
+          cta: "Take your brand digital",
+          service: "Web design & Digital",
         },
       ],
     },
@@ -558,34 +643,38 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       title: "The work",
       titleAccent: "speaks.",
       intro:
-        "Identities, campaigns and digital experiences built to give brands a place of their own.",
+        "Ideas turned into brands, campaigns and experiences that connect, communicate and leave a mark.",
       all: "See all projects",
       items: [
         {
           name: "Marea",
-          category: "Branding + Digital",
-          result: "An identity with a pulse, made to change pace.",
+          category: "Branding + Identity",
+          result:
+            "An identity created to stand out, connect and move at its own pace.",
           image: "marea-v2",
           alt: "Marea art direction case study",
         },
         {
           name: "Norte",
-          category: "Identity & strategy",
-          result: "A new way of looking at everyday life.",
+          category: "Strategy + Marketing",
+          result:
+            "A strategy built to give the brand direction and turn goals into action.",
           image: "norte-v2",
-          alt: "Norte identity project",
+          alt: "Norte strategy project",
         },
         {
-          name: "Orbita",
-          category: "Campaign & paid media",
-          result: "A campaign that set the conversation in motion.",
+          name: "Órbita",
+          category: "Campaign + Paid Media",
+          result:
+            "A campaign designed to put the brand at the centre of the conversation.",
           image: "orbita-v2",
-          alt: "Orbita campaign project",
+          alt: "Órbita campaign project",
         },
         {
           name: "Studio",
-          category: "Film production",
-          result: "Stories designed to be seen in motion.",
+          category: "Content + Film production",
+          result:
+            "Stories created to catch the eye, spark connection and stay in memory.",
           image: "studio",
           alt: "Art direction for film production",
         },
@@ -593,68 +682,50 @@ export const homeCopy: Record<Lang, HomeCopy> = {
       next: {
         title: "Your brand",
         accent: "here.",
+        text: "The next idea that leaves a mark could be yours.",
         cta: "Let’s talk",
       },
-    },
-    process: {
-      label: "How we work",
-      steps: [
-        {
-          title: "An idea",
-          accent: "appears.",
-          text: "We start with a tension, a question or a business opportunity.",
-        },
-        {
-          title: "The shape",
-          accent: "changes.",
-          text: "We test, mix and give structure to what does not exist yet.",
-        },
-        {
-          title: "The brand",
-          accent: "moves.",
-          text: "We turn the idea into an experience that moves with people.",
-        },
-      ],
     },
     contact: {
       title: "Have something",
       titleAccent: "in mind?",
       intro:
-        "Tell us what you want to move. We will reply with a first perspective, a question and a clear next step.",
+        "Tell us what you want to build, transform or grow. We connect the dots to turn it into an idea that moves.",
       channels: [
         {
           label: "Email",
-          value: "hola@nexa.agency",
-          href: "mailto:hola@nexa.agency",
+          value: "info@thenexaagency.com",
+          href: "mailto:info@thenexaagency.com",
         },
         {
           label: "WhatsApp",
           value: "Write to us",
-          href: "https://wa.me/34600000000?text=Hi%20Nexa%2C%20I%27d%20like%20to%20talk%20about%20a%20project",
+          href: "https://wa.me/18090000000?text=Hi%20Nexa%2C%20I%27d%20like%20to%20talk%20about%20a%20project",
         },
-        { label: "Based in", value: "Madrid / Spain" },
+        { label: "Based in", value: "Santo Domingo, Dominican Republic" },
       ],
       form: {
         name: "Your name",
         email: "Your email",
-        company: "Company",
-        service: "What you need",
+        company: "Company / Brand",
+        service: "What do you need?",
         servicePlaceholder: "Choose a service",
         services: [
+          "Strategy & Marketing",
+          "Branding & Identity",
+          "Social Media & Content",
           "Graphic design",
-          "Branding",
-          "Web design",
-          "Digital strategy & creativity",
-          "Paid media",
           "Film production",
-          "Something else",
+          "Campaigns & Paid Media",
+          "Web design & Digital",
+          "Other / Not sure yet",
         ],
-        message: "Tell us about the project",
-        submit: "Send project",
+        message: "Tell us about your project",
+        submit: "Tell us your idea",
         note: "Sending opens your email client with the message ready.",
+        sent: "Your idea is already in motion. We’ll be in touch soon.",
         required: "This field is required.",
         invalidEmail: "Check the email: it should look like name@domain.com.",
-        sent: "Your email client should open now. Thanks for reaching out.",
         subject: "New project",
       },
     },
@@ -676,26 +747,26 @@ export interface WorkPageCopy {
 /** /trabajos pages. Project cards reuse homeCopy[lang].work so both pages stay in sync. */
 export const workPageCopy: Record<Lang, WorkPageCopy> = {
   es: {
-    title: "Trabajo — Nexa",
+    title: "Proyectos — The Nexa Agency",
     description:
-      "Una selección del trabajo de Nexa: marcas, campañas, webs y contenido que dejan huella.",
+      "Ideas convertidas en marcas, campañas y experiencias que conectan, comunican y dejan huella.",
     heading: "Hacemos",
     headingAccent: "que pase.",
     intro:
-      "Identidad, estrategia y experiencias digitales pensadas para transformar atención en una relación real con la marca.",
+      "Ideas convertidas en marcas, campañas y experiencias que conectan, comunican y dejan huella.",
     explore: "Explorar proyectos",
     projectsLabel: "Proyectos",
     endTitle: "¿Hacemos el siguiente?",
     endCta: "Cuéntanos tu idea",
   },
   en: {
-    title: "Work — Nexa",
+    title: "Projects — The Nexa Agency",
     description:
-      "Selected Nexa work: brands, campaigns, websites and content built to leave a mark.",
+      "Ideas turned into brands, campaigns and experiences that connect, communicate and leave a mark.",
     heading: "We make",
     headingAccent: "things happen.",
     intro:
-      "Identity, strategy and digital experiences designed to turn attention into a genuine relationship with the brand.",
+      "Ideas turned into brands, campaigns and experiences that connect, communicate and leave a mark.",
     explore: "Explore projects",
     projectsLabel: "Projects",
     endTitle: "Shall we make the next one?",

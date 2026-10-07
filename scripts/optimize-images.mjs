@@ -63,6 +63,11 @@ for (const [slug, file] of [
 // Hero slideshow: 16:10 at 720 / 1280 (mobile) and 4:5 portrait at 820 (desktop card).
 const hero = out("hero");
 const heroSources = {
+  strategy: "strategy-v2",
+  branding: "branding-v2",
+  graphic: "graphic-v2",
+  audiovisual: "audiovisual",
+  studio: "studio-case",
   marea: "marea-case",
   paid: "paid-media-v2",
   orbita: "orbita-case",

@@ -151,3 +151,13 @@ OUT: CMS, autenticación, formulario con backend, blog, casos con métricas inve
 - Verificar: node scripts/optimize-images.mjs; npm run check; npm run lint; npm run build.
 - Depende de: X-T15
 - Devlog: devlog/2026-09-17/027-conceptos-standalone.md
+
+### X-T17 · Cambios del cliente (PDF) [M] [done]
+
+- Skill: ui-ux-pro-max §Flujo + §Reglas duras
+- Archivos: src/i18n/site.ts, src/components/\*, src/scripts/hero-slides.ts, src/styles/home.css, public/\*, astro.config.mjs
+- Hecho cuando: la web refleja los textos y la estructura del PDF en ES y EN, sin la sección 3D y con el dominio definitivo.
+- Verificar: npx astro check; npm run lint; npm run build; ui-verify en las 5 páginas.
+- Depende de: X-T16
+- Devlog: devlog/2026-10-07/028-cambios-cliente-pdf.md
+- Notas: queda pendiente la imagen de "Social Media & Contenido" (prompt en assets/source/prompts-pendientes.md).

@@ -29,3 +29,4 @@
 | 025 | 2026-09-17 | Salida del loader limpia y continua             | fix     | 022      | —            |
 | 026 | 2026-09-17 | Serie visual de proyectos Nexa                  | feature | 012      | X-T15        |
 | 027 | 2026-09-17 | Conceptos independientes para otro sitio        | feature | —        | X-T16        |
+| 028 | 2026-10-07 | Cambios del cliente (PDF) y fuera la sección 3D | feature | 023      | X-T17        |

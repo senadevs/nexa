@@ -15,7 +15,7 @@ const t = site[lang];
 const prefix = current === 'home' ? '' : t.home;
 const switchHref = current === 'work' ? site[t.header.switchLang].workPage : t.header.switchHref;
 const links = [
-  { href: `${prefix}#${t.anchors.clients}`, label: t.nav.clients },
+  { href: `${prefix}#${t.anchors.about}`, label: t.nav.about },
   { href: `${prefix}#${t.anchors.services}`, label: t.nav.services },
   { href: t.workPage, label: t.nav.work, current: current === 'work' },
   { href: `${prefix}#${t.anchors.contact}`, label: t.nav.contact },

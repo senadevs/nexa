@@ -12,11 +12,9 @@
     "@astrojs/check": "latest",
     "astro": "latest",
     "gsap": "latest",
-    "three": "latest",
     "typescript": "latest"
   },
   "devDependencies": {
-    "@types/three": "latest",
     "playwright": "^1.63.0",
     "prettier": "latest"
   }

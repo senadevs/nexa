@@ -23,6 +23,11 @@ const segments = [
   ...(hero?.querySelectorAll<HTMLElement>(".hero-progress i") ?? []),
 ];
 const counter = hero?.querySelector<HTMLElement>("[data-hero-counter]");
+const leadBox = hero?.querySelector<HTMLElement>("[data-hero-lead]");
+// Each slide carries its own lead copy (see hero.slides in site.ts).
+const leads = [
+  ...(hero?.querySelectorAll<HTMLElement>(".hero-slide") ?? []),
+].map((slide) => slide.dataset.lead ?? "");
 const toggle = hero?.querySelector<HTMLButtonElement>(".hero-toggle");
 
 const start = () => {
@@ -101,6 +106,25 @@ const start = () => {
     tl.add(() => {
       if (counter) counter.textContent = String(index + 1).padStart(2, "0");
     }, 0.3);
+
+    // Lead copy belongs to the slide, so it swaps in the same move.
+    if (leadBox && leads[index]) {
+      if (reduceMotion) {
+        tl.add(() => void (leadBox.textContent = leads[index]), 0.3);
+      } else {
+        tl.to(
+          leadBox,
+          { autoAlpha: 0, y: -12, duration: 0.3, ease: "power2.in" },
+          0,
+        )
+          .add(() => void (leadBox.textContent = leads[index]))
+          .fromTo(
+            leadBox,
+            { autoAlpha: 0, y: 14 },
+            { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" },
+          );
+      }
+    }
 
     if (reduceMotion) {
       tl.to([words[current], slides[current]], {

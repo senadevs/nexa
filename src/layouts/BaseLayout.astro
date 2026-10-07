@@ -9,17 +9,17 @@ interface Props {
 }
 
 const {
-  title = 'Nexa — Agencia de marketing digital',
-  description = 'Estrategia, diseño y contenido para marcas que quieren avanzar.',
+  title = 'The Nexa Agency — Agencia de marketing digital',
+  description = 'Estrategia, creatividad y ejecución conectadas en un mismo equipo para mover marcas hacia adelante.',
   lang = 'es',
   ogImage = '/images/og-nexa.jpg',
 } = Astro.props;
 const ogImageUrl = new URL(ogImage, Astro.site ?? Astro.url).toString();
-const ogAlt = lang === 'en' ? 'Nexa Digital Agency: orange fabric flowing over dark sculptural shapes' : 'Nexa Digital Agency: tela naranja en movimiento sobre formas escultóricas oscuras';
+const ogAlt = lang === 'en' ? 'The Nexa Agency: orange fabric flowing over dark sculptural shapes' : 'The Nexa Agency: tela naranja en movimiento sobre formas escultóricas oscuras';
 const knowsAbout =
   lang === 'en'
-    ? ['Branding', 'Digital marketing', 'Web design', 'Paid media', 'Film production']
-    : ['Branding', 'Marketing digital', 'Diseño web', 'Paid media', 'Producción audiovisual'];
+    ? ['Strategy', 'Branding', 'Social media', 'Content', 'Paid media', 'Web design', 'Film production']
+    : ['Estrategia', 'Branding', 'Social media', 'Contenido', 'Paid media', 'Diseño web', 'Producción audiovisual'];
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.toString();
 const basePath = Astro.url.pathname.startsWith('/en') ? Astro.url.pathname.replace(/^\/en/, '') || '/' : Astro.url.pathname;
 const spanishUrl = Astro.site ? new URL(basePath, Astro.site).toString() : new URL(basePath, Astro.url).toString();
@@ -48,13 +48,13 @@ const englishUrl = Astro.site ? new URL(englishPath, Astro.site).toString() : ne
     <meta name="description" content={description} />
     <meta name="theme-color" content="#201F1C" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="author" content="Nexa Digital Agency" />
+    <meta name="author" content="The Nexa Agency" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="es" href={spanishUrl} />
     <link rel="alternate" hreflang="en" href={englishUrl} />
     <link rel="alternate" hreflang="x-default" href={spanishUrl} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nexa Digital Agency" />
+    <meta property="og:site_name" content="The Nexa Agency" />
     <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -71,12 +71,12 @@ const englishUrl = Astro.site ? new URL(englishPath, Astro.site).toString() : ne
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Nexa Digital Agency',
+      name: 'The Nexa Agency',
       description,
       url: canonical,
       logo: new URL('/nexa-logo.svg', Astro.site ?? Astro.url).toString(),
-      email: 'hola@nexa.agency',
-      areaServed: 'ES',
+      email: 'info@thenexaagency.com',
+      areaServed: 'DO',
       knowsAbout,
     })} />
     <title>{title}</title>

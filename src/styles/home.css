@@ -594,6 +594,21 @@
   gap: clamp(1.25rem, 3vw, 3rem);
   min-height: 0;
 }
+/* Cards without a picture (e.g. Social Media & Contenido): the copy carries the card. */
+.service-body-plain {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+}
+.service-body-plain .service-copy {
+  align-content: center;
+  gap: 2rem;
+  max-width: 34ch;
+}
+.service-body-plain .service-copy p {
+  max-width: none;
+  font-size: clamp(1.3rem, 2.2vw, 2.1rem);
+  line-height: 1.25;
+}
 .service-copy {
   display: grid;
   align-content: space-between;
@@ -727,6 +742,15 @@
 .work-card-next::after {
   content: none;
 }
+.work-next-copy {
+  display: grid;
+  gap: 1rem;
+}
+.work-next-copy p {
+  max-width: 24ch;
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+}
 .work-next-title {
   font: 800 clamp(3.2rem, 8vw, 8.5rem) / 0.86 var(--display);
   letter-spacing: -0.03em;
@@ -794,89 +818,6 @@
 .work-card:hover .work-arrow .icon,
 .work-card:focus-visible .work-arrow .icon {
   transform: rotate(45deg);
-}
-
-/* ---------- Process (3D scroll story) ---------- */
-.process {
-  padding-bottom: var(--radius-sheet);
-}
-.process-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  max-width: var(--max);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-.immersive-copy {
-  display: grid;
-}
-.immersive-step {
-  min-height: 100svh;
-  display: grid;
-  align-content: center;
-  gap: 1.5rem;
-  opacity: 0.28;
-  transition: opacity 0.6s ease;
-}
-.immersive-step > * {
-  transition: transform 0.8s var(--ease-out);
-}
-.immersive-step:not(.is-active) > * {
-  transform: translateY(1.5rem);
-}
-.immersive-step:not(.is-active) > p {
-  transform: translateY(2.5rem);
-}
-.process.no-webgl .immersive-step,
-.immersive-step.is-active {
-  opacity: 1;
-}
-.process.no-webgl .immersive-step > * {
-  transform: none;
-}
-.step-number {
-  font: 800 clamp(4rem, 10vw, 10rem) / 0.8 var(--display);
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--orange);
-}
-.immersive-step h3 {
-  font-size: var(--fs-display);
-  line-height: 0.86;
-}
-.immersive-step p {
-  max-width: 30ch;
-  font-size: var(--fs-lead);
-  color: var(--text-inverse-muted);
-}
-.immersive-stage {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-.immersive-stage > * {
-  grid-area: 1 / 1;
-}
-.immersive-stage canvas {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-}
-/* Static image only when WebGL is unavailable (it used to peek out behind the 3D shapes). */
-.process.has-webgl .immersive-fallback {
-  display: none;
-}
-.immersive-fallback {
-  width: min(70%, 460px);
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: var(--radius-card);
-  opacity: 0.3;
-  filter: grayscale(1);
-  transform: rotate(-6deg);
 }
 
 /* ---------- Contact ---------- */
@@ -1050,23 +991,6 @@
   .service-body {
     grid-template-columns: 1fr 1fr;
   }
-  .process-grid {
-    grid-template-columns: 1fr;
-  }
-  .immersive-stage {
-    position: relative;
-    height: 60svh;
-    order: -1;
-  }
-  .immersive-step {
-    min-height: auto;
-    padding-block: 3rem;
-    opacity: 1;
-  }
-  .immersive-step > *,
-  .immersive-step:not(.is-active) > * {
-    transform: none;
-  }
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1192,15 +1116,5 @@
   .contact-channels li {
     display: grid;
     gap: 0.25rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .immersive-step {
-    opacity: 1;
-  }
-  .immersive-step > *,
-  .immersive-step:not(.is-active) > * {
-    transform: none;
   }
 }

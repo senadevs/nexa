@@ -111,6 +111,13 @@ $ npm run lint
 All matched files use Prettier code style!
 ```
 
+## Memoria
+
+Se crea `devlog/MEMORIA.md` (no existía con 28 entradas ya escritas): decisiones vigentes D-001…D-025,
+reglas del cliente, lo que no funcionó y los pendientes abiertos con fecha. Las de hoy son D-023 (contenido
+del PDF aplicado y traducido), D-024 (sin sección 3D ni Three.js) y D-025 (opciones del formulario iguales a
+las categorías de servicios).
+
 ## Pendiente
 
 - Imagen propia de "Social Media & Contenido" (prompt listo).

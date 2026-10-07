@@ -413,10 +413,10 @@ p {
   border-radius: var(--radius-pill);
 }
 .site-nav a {
-  padding: 0.55rem 1rem;
+  padding: 0.6rem 1.15rem;
   border-radius: var(--radius-pill);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 1.0625rem;
   text-decoration: none;
   transition:
     background var(--dur-fast) ease,

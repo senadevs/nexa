@@ -42,8 +42,9 @@
 .hero-title {
   grid-area: title;
   margin: 0;
-  /* Capped by viewport height so title + showcase + CTAs fit on short laptop screens. */
-  font-size: min(var(--fs-mega), 21svh);
+  /* Capped by viewport height so title + showcase + CTAs fit on short laptop screens, and by
+     --hero-fit, which hero-slides.ts measures so the longest rotating word never gets clipped. */
+  font-size: calc(min(var(--fs-mega), 21svh) * var(--hero-fit, 1));
   line-height: 0.84;
   letter-spacing: -0.035em;
 }
@@ -238,10 +239,13 @@
     align-self: end;
   }
   .hero-title {
-    font-size: min(
-      var(--fs-mega),
-      21svh,
-      calc((100vw - 2 * var(--gutter) - var(--hero-card-w) - 4rem) / 3.9)
+    font-size: calc(
+      min(
+          var(--fs-mega),
+          21svh,
+          calc((100vw - 2 * var(--gutter) - var(--hero-card-w) - 4rem) / 3.9)
+        ) *
+        var(--hero-fit, 1)
     );
   }
 }
@@ -1002,8 +1006,9 @@
   }
   .hero-slides {
     grid-column: 1 / -1;
-    height: auto;
+    height: min(38svh, 56vw);
     width: 100%;
+    aspect-ratio: auto;
   }
   .hero-slide-meta {
     grid-column: 1 / -1;

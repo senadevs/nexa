@@ -30,6 +30,24 @@ const leads = [
 ].map((slide) => slide.dataset.lead ?? "");
 const toggle = hero?.querySelector<HTMLButtonElement>(".hero-toggle");
 
+/*
+ * The rotating words are longer than the first line ("cobran vida.", "come alive."), so the viewport
+ * caps in CSS are not enough: measure the widest word against its mask and shrink the title with
+ * --hero-fit when it would be clipped. Runs before the intro, so nothing is seen resizing.
+ */
+const fitTitle = () => {
+  const title = hero?.querySelector<HTMLElement>(".hero-title");
+  const mask = hero?.querySelectorAll<HTMLElement>(".hero-title .line")[1];
+  if (!title || !mask || !words.length) return;
+  title.style.removeProperty("--hero-fit");
+  const available = mask.clientWidth;
+  const widest = Math.max(...words.map((word) => word.scrollWidth));
+  if (!available || !widest) return;
+  // 0.99 leaves a hair of room for the letter-spacing of the last glyph.
+  const fit = (available * 0.97) / widest;
+  if (fit < 1) title.style.setProperty("--hero-fit", fit.toFixed(3));
+};
+
 const start = () => {
   if (!hero || slides.length < 2 || words.length !== slides.length) return;
   const reduceMotion = window.matchMedia(
@@ -47,6 +65,14 @@ const start = () => {
             aria: "none",
           }).chars,
       );
+
+  // Measured after the split: inline-block chars are a touch wider than the plain word.
+  fitTitle();
+  let fitTimer = 0;
+  window.addEventListener("resize", () => {
+    window.clearTimeout(fitTimer);
+    fitTimer = window.setTimeout(fitTitle, 150);
+  });
 
   // Initial state: first slide visible, the rest waiting below their mask.
   gsap.set([...words, ...slides], { visibility: "visible" });

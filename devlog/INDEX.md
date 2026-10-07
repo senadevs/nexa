@@ -30,3 +30,4 @@
 | 026 | 2026-09-17 | Serie visual de proyectos Nexa                  | feature | 012      | X-T15        |
 | 027 | 2026-09-17 | Conceptos independientes para otro sitio        | feature | —        | X-T16        |
 | 028 | 2026-10-07 | Cambios del cliente (PDF) y fuera la sección 3D | feature | 023      | X-T17        |
+| 029 | 2026-10-07 | Hero sin cortes y menú legible                  | fix     | 028      | X-T17        |
